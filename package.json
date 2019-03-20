@@ -28,7 +28,8 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.0.17",
+    "concurrently": "^3.5.0"
   },
   "repository": "https://github.com/bjsmith3185/ShoppingList_wRedux.git"
 }
