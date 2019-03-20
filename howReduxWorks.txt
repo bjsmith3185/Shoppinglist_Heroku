@@ -1,0 +1,122 @@
+
+
+redux
+to send data from a page to the store.
+
+
+
+HomePage.js
+
+* addItem(data) // takes in the users input
+    - exported using mapDispatchToProps()
+        - make a const {} named 'mapDispatchToProps' that includes all the functions on the page to export.
+
+* folder sagas/saga.js
+    - create the function* named watchAddItem()
+        - this function listens for the page to export this action.
+        - NOTE: this one does not take parameters. the data submittd is automatically sent and redirected.
+
+    - this function uses yield takeLatest('ADD_ITEM', addItemAsync) 
+        * the addItemAsync() is the function above function* watchAddItem(). this function will do the async call to the server.
+
+    - create function* addItemAsync(data)
+        - to perform an async operation use this setup
+        * const myData = yield API.updateList(data)
+        * yield put({type: 'GET_LIST_ASYNC', val myData.data})
+        - myData.data is the info you will need.
+
+* folder store/setupStore.js 
+    - import watchAddItem from '../sagas/saga'
+    - add  sagaMiddleware.run(watchAddItem);
+        * do this below the const store = createStore()
+    
+* folder reducer/index.js
+    - use the index.js file to export all the reducers in the reducer folder
+
+    import { combineReducers } from 'redux';
+    import getList from './getList';
+
+    export default combineReducers({
+    getList: getList,
+    })
+
+    
+* folder reducer/getList.js 
+    - create the reducer in this file
+    * import state from the state file  
+        - import initialState from '../store/state'
+
+    - set const newState = { ...state };
+    - return newState at teh bottom of the page;
+
+    - create the reducer    
+       - const getList = ( state = initialState, action ) => {
+           const newState = { ... state };
+
+           if (action.type === 'GET_LIST_ASYNC') {
+
+               // do logic here if needed.
+               // the data passed in here is from the database
+               // so we set that data to update the state.
+               return {
+                   ...state,
+                   list: listArray
+               }
+           }
+            // in the action does not match return the state unchanged.
+           return newState
+       }
+
+=================================================================
+
+redux
+to get data from the store to a page
+
+HomePage.js
+
+    * Add a const mapStateToProps = state => {
+        return {
+            name: state.name,
+            list: state.list
+        }
+    }
+        - this will bring in the data from the store to teh page
+        - to access the data
+            * this.props.name
+        - to see all props. data
+ 
+                render() {
+                    console.log(this.props) 
+
+                    return (
+
+                    )
+                }
+
+    
+===================================================================
+
+redux
+to set up initialState
+
+    * folder store/state.js
+        const initState = {
+        name: '',
+        list: [],
+        }
+
+    export default initState
+
+
+
+
+
+
+
+
+
+
+
+
+
+

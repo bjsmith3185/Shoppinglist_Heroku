@@ -1,0 +1,11 @@
+
+
+
+database: shopping
+collections: users, shoppings
+
+use yarn start
+
+
+
+

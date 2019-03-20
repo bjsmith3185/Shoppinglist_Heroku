@@ -1,0 +1,57 @@
+
+
+list page:
+
+    - yellow backgournd
+    - lines like a notebook page
+
+    - list item:   Milk - skim  (qty 2)      xremove
+        - click on the item and it will strike thru
+        - click on the x to the right to remove the item
+
+    - Navbar:
+        - top right: + to add new item to list
+        - opens a div below the nav bar to add item
+
+
+    - shopping collection:
+        - item
+        - qty 
+        - department 
+        - store
+
+    - sorting;
+        - 2 selections: by store or all
+
+        - select by stores a-z or z-a (show all)
+        
+        - click on a store to show just those items.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
