@@ -1,8 +1,13 @@
 
 const initState = {
     name: '',
-    list: [],
+    allList: [],
     countRemaining: '',
+    myStore: '',
+    storeList: [],
+    storeNames: [],
+    password: '',
+    userId: '',
 }
 
 // const initState = {

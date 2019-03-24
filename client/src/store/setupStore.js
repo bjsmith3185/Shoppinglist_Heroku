@@ -1,24 +1,25 @@
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 
 // import reducer from '../reducer/getList';
-import reducer from '../reducer/getList';
+import setData from '../reducer/reducers';
 // Saga
 import createSagaMiddleware from 'redux-saga';
-import {watchAddItem, watchGetList, watchDeleteItem, watchCheckOff} from '../sagas/saga';
+import {watchAddItem, watchLoadData, watchDeleteItem, watchStrikeThru, watchSetStore, watchLogIn, watchSignOut} from '../sagas/saga';
 
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+const store = createStore(setData, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(watchAddItem);
-sagaMiddleware.run(watchGetList);
+sagaMiddleware.run(watchLoadData);
+sagaMiddleware.run(watchStrikeThru);
 sagaMiddleware.run(watchDeleteItem);
-sagaMiddleware.run(watchCheckOff);
-
-
+sagaMiddleware.run(watchSetStore);
+sagaMiddleware.run(watchLogIn);
+sagaMiddleware.run(watchSignOut);
 
 export default store;
 

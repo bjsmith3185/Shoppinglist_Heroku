@@ -3,15 +3,15 @@ const users = require("../../controllers/usersController");
 const shopping = require("../../controllers/shoppingController");
 
 const shoppingData = {
-    item: 'Milk',
+    item: 'Milk - smik',
     store: 'Walmart',
-    note: 'Whole Milk',
     qty: 2,
 }
 
 
 const userData ={
-    name: "Brian Smith"
+    name: "brian smith",
+    password: '1234'
 }
 
 

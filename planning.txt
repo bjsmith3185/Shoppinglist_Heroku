@@ -7,5 +7,118 @@ collections: users, shoppings
 use yarn start
 
 
+middleware'
+
+loadAllData.js
+    - pageLoad() takes in user._id
+    - data from user collection     
+        * store
+    - data from shopping collection 
+        * allItems: (all shopping list_)
+        * storeList: (list of items for selected store)
+        * storeNames: (list of store names)
+        * countRemaining: (items remaining for selected store)
+
+countRemaining.js       DONE
+    - count() takes in the store name
+        * sorts by strikeThru value    
+        * return countRemaining number  
+
+storeList.js        DONE
+    - createStoreList() takes in store name
+        * gets store list from shopping collection
+        * request to countRemaining() pass in store name 
+        * returns storeList amd countRemaining 
+
+updateStore.js        DONE
+    - setStore() 
+        * sets the store value in users collection
+        * request to storeList.js pass in store name 
+        * return: storeName, storeList, countRemaining
+
+strikethru.js       DONE 
+    - strike()  takes in shopping._id and val true/false
+    - updates the value in shopping model
+    - request to storeList.js 
+    - return storeList and countRemaining
+
+deleteItem.js       DONE
+    - delete() takes in shopping._id
+    - remove item from shopping model
+    - request to storeList() to return list
+    - return storeList and countRemaining 
+
+addItem.js      DONE
+    - newItem() takes in data for item and ?(storeName )
+    - set the new item to shopping collection 
+    - request to storeList.js pass in store name 
+    - return storeList and countRemaining 
+
+storeNames.js   DONE
+    - nameList() takes in all items array
+    - returns array of just store names 
+
+
+
+
+
+
+
+
+
+
+on Homepage load
+    - LOAD_DATA
+        * use the user._id to find   api/system/load
+            - set allList: (every item in collection)
+            - set store: from users.store
+            - set storeList: (get all items and sort by store)
+            - set storeNames: (get all items and create store list);
+        * return to SET_ALL_DATA 
+
+
+strike-thru
+    - STRIKE_THRU   
+        * send data to system router  api/system/strike
+
+        * return to SET_STORELIST_COUNT
+
+delete item
+    - DELETE_ITEM
+        * send data to systen router api/system/delete 
+
+         * return to SET_STORELIST_COUNT
+
+select store
+    - SET_STORE 
+        * send data to system router api/system/setstore 
+
+          * return to SET_STORELIST_COUNT_STORE
+
+
+
+Add Item 
+    - ADD_ITEM  
+        * send data to system router api/system/addItem 
+
+        * return to SET_STORELIST_COUNT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

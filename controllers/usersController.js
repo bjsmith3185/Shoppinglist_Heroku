@@ -1,13 +1,33 @@
 const db = require("../models");
 
 module.exports = {
-
-  create: function (data) {
-    console.log("is this here?????")
-    console.log(data)
-    return db.Users.create(data)
+  create: function(data) {
+    // console.log("is this here?????");
+    // console.log(data);
+    return db.Users.create(data);
   },
-  
+
+  update: function(id, data) {
+    // console.log("look here")
+    // console.log(data)
+    return db.Users.findOneAndUpdate(
+      { _id: id },
+      data,
+      { new: true }
+    );
+  },
+
+  findById: function(id) {
+    return db.Users.findById({ _id: id });
+  },
+
+ 
+
+
+
+
+
+
 
 
 
@@ -29,7 +49,6 @@ module.exports = {
   //     .findById({ _id : id })
   // },
 
-  
   // update: function (id, data) {
   //   return db.Pictures
   //     .findOneAndUpdate({ _id: id }, data , { new : true })
@@ -57,6 +76,4 @@ module.exports = {
   //     populate: { path: 'author' }
   //   });
   // },
-
-  
 };

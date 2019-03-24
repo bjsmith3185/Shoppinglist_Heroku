@@ -1,4 +1,10 @@
 
+.header-area {
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+
 .header-title {
   /* font-family: 'Patrick Hand', cursive; */
   font-family: 'Kalam', cursive;
@@ -7,9 +13,16 @@
 
 }
 
+.header-name-area {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+}
+
 .home-addbar {
   width: 100%;
   border-bottom: 1px solid gray;
+  
 }
 
 .addbar-remaining {
@@ -23,25 +36,56 @@
   font-family: 'Kalam', cursive;
 }
 
-.move-right {
-  width: 20%;
-  display: inline-block;
-  color: green;
-  text-align: right;
-  padding-right: 15px;
-  /* margin-right: 15px; */
-  font-size: 25px;
+.menu-button-area {
+  /* background: red; */
+  width: 50px;
+  height: 44px;
+  position: fixed;
+  top: 15px;
+  left: 15px;
   cursor: pointer;
+  /* padding-top: 5px; */
+  
+}
+
+.mybutton {
+  font-size: 30px;
+  margin-left: 10px;
+  /* margin-top: 5px; */
+}
+
+
+.add-button-area {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  /* background: green; */
+  width: 20%;
+  z-index: 2;
+  cursor: pointer;
+  text-align: right;
+}
+
+.myAdd {
+  font-size: 35px;
+  color: green;
+  padding-right: 4px;
+  
 }
 
 
 
 
+/* .move-right {
+  width: 20%;
+  display: inline-block;
+  color: green;
+  text-align: right;
+  padding-right: 15px;
 
-
-
-
-
+  font-size: 25px;
+  cursor: pointer;
+} */
 
 
 

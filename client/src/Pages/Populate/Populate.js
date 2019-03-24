@@ -21,7 +21,7 @@ class Populate extends Component {
   }
 
   backToApp = () => {
-    this.props.history.push(ROUTES.HOME);
+    this.props.history.push(ROUTES.LANDING);
   }
 
 
@@ -38,14 +38,14 @@ class Populate extends Component {
         <br/>
         <br/>
         <br/>
-        <div>Add shopping item to database</div>
-        <button onClick={this.addShopping}>User</button>
+        {/* <div>Add shopping item to database</div>
+        <button onClick={this.addShopping}>User</button> */}
 
         <br/>
         <br/>
         <br/>
-        <div>Add shopping item to database</div>
-        <button onClick={this.backToApp}>User</button>
+        <div>Back to the app</div>
+        <button onClick={this.backToApp}>Return</button>
 
       </div>
 
