@@ -45,10 +45,11 @@ router.route("/delete/:id").delete((req, res) => {
   .catch(err => res.status(422).json(err));
 })
 
-router.route("/addItem").post((req, res) => {
-  // console.log("in system router")
+router.route("/addItem/:id").post((req, res) => {
+  // console.log("in system router&&&&&&&&&&7")
   // console.log(req.body)
-  addItem.newItem(req.body)
+  // console.log(req.params.id)
+  addItem.newItem(req.params.id, req.body)
   .then(result => {
     res.json(result)
   })

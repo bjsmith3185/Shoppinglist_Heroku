@@ -16,7 +16,7 @@ export default {
   //============ system
 
   loadData: function(user_id) {
-    console.log(user_id)
+    // console.log(user_id)
     return axios.get('/api/system/load/'+ user_id)
   },
 
@@ -34,13 +34,13 @@ export default {
     return axios.put('/api/system/setstore/'+user_id , data)
   },
 
-  addItem: function(data) {
+  addItem: function(user, data) {
     // console.log(data)
-    return axios.post('/api/system/addItem/', data)
+    return axios.post('/api/system/addItem/'+ user, data)
   },
 
   logIn: function (data) {
-    console.log(data)
+    // console.log(data)
     return axios.put('/api/system/login', data)
   },
 

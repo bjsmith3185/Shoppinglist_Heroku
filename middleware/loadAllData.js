@@ -53,33 +53,6 @@ module.exports = {
                     .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
-
-              // shopping
-              //   .findByStore(userResult.myStore)
-              //   .then(storeResult => {
-              //     // storeName list
-              //     storeNames
-              //       .nameList(allResult)
-              //       .then(storeNames => {
-              //         // get count remaining
-              //         count
-              //           .count(storeResult)
-              //           .then(countResult => {
-              //             let returnData = {
-              //               store: userResult.myStore,
-              //               allList: allResult,
-              //               storeList: storeResult,
-              //               countRemaining: countResult,
-              //               name: userResult.name,
-              //               storeNames: storeNames,
-              //             };
-              //             resolve(returnData);
-              //           })
-              //           .catch(err => console.log(err));
-              //       })
-              //       .catch(err => console.log(err));
-              //   })
-              //   .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
         })

@@ -32,8 +32,9 @@ class Header extends Component {
         store: this.state.store,
         qty: this.state.qty
     };
+    let user = this.props.userId;
 
-    this.props.addItem(data);
+    this.props.addItem(user, data);
     this.setState({
       item: "",
       store: "",
@@ -68,8 +69,8 @@ class Header extends Component {
 
   selectStore = store => {
     // console.log(store);
-    console.log("selecting store")
-    console.log(this.props.userId)
+    // console.log("selecting store")
+    // console.log(this.props.userId)
     const myStore = {
       userId: this.props.userId,
      myStore: store
@@ -91,7 +92,7 @@ class Header extends Component {
   };
 
   openStores = () => {
-    console.log("clicked open stores");
+    // console.log("clicked open stores");
     // this.storeNames();
     if (this.state.showStores) {
       this.setState({
@@ -164,8 +165,8 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  console.log("state coming into Header.js");
-  console.log(state);
+  // console.log("state coming into Header.js");
+  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -180,10 +181,10 @@ const mapStateToProps = state => {
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
   return {
-    addItem: data => {
+    addItem: (user, data) => {
       dispach({
         type: 'ADD_ITEM',
-        val: data
+        val: {user: user, data: data}
       });
     },
 
@@ -209,3 +210,43 @@ export default connect(
 
 
 
+
+// <div className="header-area">
+// {/* Menu Button  */}
+// <div className="menu-button-area" onClick={this.showDropdown}>
+//   <i className="mybutton fas fa-bars" />
+// </div>
+// {/* Title  */}
+// <h1 className="text-center header-title-top">Hey Don't Forget</h1>
+// {/* Add Item Button  */}
+// <div className="add-button-area" onClick={this.openInputForm}>
+//   <i className="myAdd fas fa-plus" />
+// </div>
+
+// {/* Title on small screen  */}
+// <h1 className="text-center header-title-below">Hey Don't Forget</h1>
+
+// <h3 className="header-name-area text-center">{this.props.name}</h3>
+
+// {/* dropdown menu goes here  */}
+
+// {this.state.showDropDownMenu && (
+//   <Menu
+//     openStores={this.openStores}
+//     showStores={this.state.showStores}
+//     stores={this.props.storeNames}
+//     selectStore={this.selectStore}
+//     signOutUser={this.signOutUser}
+//   />
+// )}
+
+// {this.state.showInputForm && (
+//   <Form
+//     onChange={this.onChange}
+//     item={this.state.item}
+//     qty={this.state.qty}
+//     store={this.state.store}
+//     addToList={this.moreItems}
+//   />
+// )}
+// </div>

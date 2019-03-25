@@ -44,7 +44,7 @@ const setData = (state = initialState, action) => {
       // name: action.val.name,
       myStore: action.val.myStore,
       storeList: action.val.storeList,
-      // storeNames: action.val.storeNames,
+      storeNames: action.val.storeNames,
     };
   }
 

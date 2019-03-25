@@ -1,6 +1,7 @@
 const shopping = require('../controllers/shoppingController')
 const count = require('./countRemaining')
 // returns a specific list for the store passed in 
+// as well as the count remaining
 
 module.exports = {
 
