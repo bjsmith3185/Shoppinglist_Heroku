@@ -16,32 +16,15 @@ class LandingPage extends Component {
 
 
   }
-// componentWillReceiveProps() {
-//   console.log("component will get props")
-//     console.log(this.props)
-//     // if (this.props.userId) {
-//     //   this.props.history.push(ROUTES.HOME)
-//     // }
-// }
-  // componentWillUpdate() {
-  //   console.log("component will update")
-  //   console.log(this.props)
-  //   // if (this.props.userId) {
-  //   //   this.props.history.push(ROUTES.HOME)
-  //   // }
-  // }
-  
 
-  // componentWillReceiveProps () {
-  //   if (this.props.userId) {
-  //     this.props.history.push(ROUTES.HOME)
-  //   }
-  // }
 
   pageRedirect = () => {
-    // console.log("page redirect ()")
-    // console.log(this.props.userId)
+
     if(this.props.userId) {
+
+      // set user_id to local storage
+      localStorage.setItem("userId", this.props.userId)
+
       this.props.history.push(ROUTES.HOME)
     }
     if(this.props.password) {

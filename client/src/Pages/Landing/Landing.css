@@ -2,17 +2,19 @@
 
 .landing-page-container {
     width: 100%;
+    padding-top: 150px;
 }
 
 .landing-title {
     color: black;
     font-size: 36px;
     font-family: 'Kalam', cursive;
-    margin-top: 250px;
+    /* margin-top: 250px; */
 }
 
 .login-form {
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    padding-bottom: 200px;
 }
 
 .landing-input-area {

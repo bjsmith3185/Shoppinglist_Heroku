@@ -5,19 +5,96 @@
 }
 
 
-.header-title {
-  /* font-family: 'Patrick Hand', cursive; */
+.top-area {
+  width: 100%;
+
+  height: auto;
+}
+
+.left-box {
+  display:inline-block;
+  color: black;
+  width: 15%;
+
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.center-box {
+  display:inline-block;
+  text-align: center;
+  width: 70%;
+}
+
+.top-title {
+  font-size: 45px;
+  font-weight: bolder;
+  font-family: 'Kalam', cursive;
+  color: black;
+}
+
+.right-box {
+  display:inline-block;
+  color: green;
+  width: 15%;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.bottom-title {
+  display: none;
+  width: 100%;
+  font-size: 40px;
   font-family: 'Kalam', cursive;
   font-weight: bold;
-  margin-top: 15px;
-
 }
 
 .header-name-area {
+  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
   font-family: 'Kalam', cursive;
 }
+
+
+@media only screen and (max-width: 480px) {
+  
+  .top-title {
+    display: none;
+  }
+  
+  .bottom-title {
+    display: block;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .header-title-top {
+
+  font-family: 'Kalam', cursive;
+  font-weight: bold;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.header-title-below {
+  display: none;
+  font-family: 'Kalam', cursive;
+  font-weight: bold;
+}
+
+
 
 .home-addbar {
   width: 100%;
@@ -32,46 +109,64 @@
   padding-left: 15px;
   font-weight: bold;
   font-size: 20px;
-  /* font-family: 'Patrick Hand', cursive; */
   font-family: 'Kalam', cursive;
 }
 
-.menu-button-area {
-  /* background: red; */
+.menu-button-area-backup {
   width: 50px;
   height: 44px;
   position: fixed;
   top: 15px;
   left: 15px;
   cursor: pointer;
-  /* padding-top: 5px; */
+
   
+}
+
+.menu-button-area {
+  background: red;
+  width: 50px;
+  height: 44px;
+  cursor: pointer;
+  float: left;
+  display: inline-block;
 }
 
 .mybutton {
   font-size: 30px;
   margin-left: 10px;
-  /* margin-top: 5px; */
+
 }
 
 
 .add-button-area {
+
+  width: 20%;
+  z-index: 2;
+  cursor: pointer;
+  text-align: right;
+  float: right;
+  display: inline-block;
+}
+
+.add-button-area-backup {
   position: fixed;
   top: 15px;
   right: 15px;
-  /* background: green; */
+
   width: 20%;
   z-index: 2;
   cursor: pointer;
   text-align: right;
 }
 
+
 .myAdd {
   font-size: 35px;
   color: green;
   padding-right: 4px;
   
-}
+} */
 
 
 

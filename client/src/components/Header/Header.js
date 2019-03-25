@@ -113,18 +113,28 @@ class Header extends Component {
   render() {
     return (
       <div className="header-area">
-        {/* Menu Button  */}
-        <div className="menu-button-area" onClick={this.showDropdown}>
-          <i className="mybutton fas fa-bars" />
-        </div>
-        {/* Title  */}
-        <h1 className="text-center header-title">Hey Don't Forget</h1>
-        {/* Add Item Button  */}
-        <div className="add-button-area" onClick={this.openInputForm}>
-          <i className="myAdd fas fa-plus" />
-        </div>
 
-        <h3 className="header-name-area text-center">{this.props.name}</h3>
+        <div className="top-area">
+
+          <div className="left-box text-center" onClick={this.showDropdown}>
+          <i className="fas fa-bars" />
+          </div>
+        
+          <div className="center-box text-center">
+          <div className="top-title text-center">Hey Don't Forget</div>
+          </div>
+        
+          <div className="right-box text-center" onClick={this.openInputForm}>
+          <i className="fas fa-plus" />
+          </div>
+
+        </div>
+     
+
+        {/* Title on small screen  */}
+        <div className="text-center bottom-title">Hey Don't Forget</div>
+
+        <div className="header-name-area text-center">{this.props.name}</div>
 
         {/* dropdown menu goes here  */}
 
@@ -196,3 +206,6 @@ export default connect(
   mapStateToProps,
   mapDispachToProps
 )(Header);
+
+
+
