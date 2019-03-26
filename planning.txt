@@ -107,7 +107,20 @@ Add Item
 
 
 
+=================
 
+to set myStore in users collection 
+
+    - if a new item is added, set myStore to that store    DONE
+
+    - when an item is actually deleted
+        - function to check if that store has any remaining items
+            - if not, make sure myStore is not set to that store
+            - if yes, dont worry about this check.
+
+    - on page load
+        - if there are no items in the shoppings collection
+            - clear myStore from users collection.
 
 
 

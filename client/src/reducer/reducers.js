@@ -67,6 +67,17 @@ const setData = (state = initialState, action) => {
     };
   }
 
+  // reducer for setting user id on signin
+  if (action.type === "SET_USERID") {
+    // console.log("reducer, set userID");
+    // console.log(action.val);
+       
+    return {
+      ...state,
+      userId: action.val,
+    };
+  }
+
   // reducer for signing out user
   if (action.type === "SIGN_OUT") {
     console.log("reducer, set signout");

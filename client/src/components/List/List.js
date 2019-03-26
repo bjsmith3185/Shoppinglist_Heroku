@@ -11,7 +11,12 @@ class List extends Component {
 
   delete = item_id => {
     // console.log("deleting");
-     this.props.removeItem(item_id);
+    // console.log(localStorage.getItem("userId"))
+    let deleteData = {
+      item: item_id,
+      user: localStorage.getItem("userId")
+    }
+     this.props.removeItem(deleteData);
   };
 
   strike = (id, strikeThru) => {
@@ -101,9 +106,12 @@ const mapDispachToProps = dispach => {
       dispach({ type: "STRIKE_THRU", val: { id: id, strikeThru: strikeThru } });
     },
 
-    removeItem: id => {
-      dispach({ type: "DELETE_ITEM", val:id });
+    removeItem: (data) => {
+      dispach({ type: "DELETE_ITEM", val: data });
     },
+    // removeItem: id => {
+    //   dispach({ type: "DELETE_ITEM", val:id });
+    // },
 
   };
 };

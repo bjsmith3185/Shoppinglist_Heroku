@@ -18,6 +18,7 @@
   font-weight: bold;
   color: black;
   cursor: pointer;
+  font-family: 'Kalam', cursive;
 }
 
 .stores-dropdown {
@@ -36,9 +37,19 @@
   font-family: 'Kalam', cursive;
 }
 
+.edit-link {
+  color: gray;
+  
+}
 
+.signout-link {
+  color: gray;
+}
 
-
+.close-menu-link {
+  color: red;
+  
+}
 
 
 

@@ -46,11 +46,13 @@ class Header extends Component {
   showDropdown = () => {
     if (this.state.showDropDownMenu) {
       this.setState({
-        showDropDownMenu: false
+        showDropDownMenu: false,
+        
       });
     } else {
       this.setState({
-        showDropDownMenu: true
+        showDropDownMenu: true,
+        showInputForm: false,
       });
     }
   };
@@ -62,7 +64,8 @@ class Header extends Component {
       });
     } else {
       this.setState({
-        showInputForm: true
+        showInputForm: true,
+        showDropDownMenu: false,
       });
     }
   };
@@ -146,6 +149,7 @@ class Header extends Component {
             stores={this.props.storeNames}
             selectStore={this.selectStore}
             signOutUser={this.signOutUser}
+            showDropDown={this.showDropdown}
           />
         )}
 
@@ -208,45 +212,3 @@ export default connect(
   mapDispachToProps
 )(Header);
 
-
-
-
-// <div className="header-area">
-// {/* Menu Button  */}
-// <div className="menu-button-area" onClick={this.showDropdown}>
-//   <i className="mybutton fas fa-bars" />
-// </div>
-// {/* Title  */}
-// <h1 className="text-center header-title-top">Hey Don't Forget</h1>
-// {/* Add Item Button  */}
-// <div className="add-button-area" onClick={this.openInputForm}>
-//   <i className="myAdd fas fa-plus" />
-// </div>
-
-// {/* Title on small screen  */}
-// <h1 className="text-center header-title-below">Hey Don't Forget</h1>
-
-// <h3 className="header-name-area text-center">{this.props.name}</h3>
-
-// {/* dropdown menu goes here  */}
-
-// {this.state.showDropDownMenu && (
-//   <Menu
-//     openStores={this.openStores}
-//     showStores={this.state.showStores}
-//     stores={this.props.storeNames}
-//     selectStore={this.selectStore}
-//     signOutUser={this.signOutUser}
-//   />
-// )}
-
-// {this.state.showInputForm && (
-//   <Form
-//     onChange={this.onChange}
-//     item={this.state.item}
-//     qty={this.state.qty}
-//     store={this.state.store}
-//     addToList={this.moreItems}
-//   />
-// )}
-// </div>

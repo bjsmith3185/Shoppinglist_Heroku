@@ -1,15 +1,13 @@
 import axios from "axios";
 
-
 export default {
-
   // =========== route /populate/....
 
-  populateUser: function () {
+  populateUser: function() {
     return axios.post("/populate/users");
   },
 
-  populateShopping: function () {
+  populateShopping: function() {
     return axios.post("/populate/shopping");
   },
 
@@ -17,36 +15,30 @@ export default {
 
   loadData: function(user_id) {
     // console.log(user_id)
-    return axios.get('/api/system/load/'+ user_id)
+    return axios.get("/api/system/load/" + user_id);
   },
 
   strikeThru: function(shopping_id, data) {
-
-    return axios.put('/api/system/strike/'+ shopping_id, data)
+    return axios.put("/api/system/strike/" + shopping_id, data);
   },
 
-  deleteItem: function(id) {
-    // console.log(id)
-    return axios.delete('/api/system/delete/'+id)
+  deleteItem: function(item, user) {
+    return axios.delete("/api/system/delete/" + item + "/" + user);
   },
 
   selectStore: function(user_id, data) {
-    return axios.put('/api/system/setstore/'+user_id , data)
+    return axios.put("/api/system/setstore/" + user_id, data);
   },
 
   addItem: function(user, data) {
     // console.log(data)
-    return axios.post('/api/system/addItem/'+ user, data)
+    return axios.post("/api/system/addItem/" + user, data);
   },
 
-  logIn: function (data) {
+  logIn: function(data) {
     // console.log(data)
-    return axios.put('/api/system/login', data)
+    return axios.put("/api/system/login", data);
   },
-
-  
-
-
 
   // getAllData: function () {
   //   return axios.get('./api/system/all')
@@ -57,22 +49,19 @@ export default {
   //   return axios.put('./api/system/checkoff/' + id, data)
   // },
 
-  
   // =============== shopping
 
-  updateShoppingList: function (data) {
-    return axios.post('./api/shopping', data)
+  updateShoppingList: function(data) {
+    return axios.post("./api/shopping", data);
   },
 
-  getListItems: function () {
-    return axios.get('./api/shopping');
+  getListItems: function() {
+    return axios.get("./api/shopping");
   },
 
   // deleteItem: function (id) {
   //   return axios.delete('./api/shopping/' + id)
   // },
-
-  
 
   // checkOff: function (id, data) {
   //   console.log("api")
@@ -81,18 +70,13 @@ export default {
 
   //==================== User
 
-  signOut: function (id) {
-    return axios.put('/api/users/signout/' + id)
-  },
-
+  signOut: function(id) {
+    return axios.put("/api/users/signout/" + id);
+  }
 
   // updateUserData: function (data) {
   //   console.log("user update api")
   //   console.log(data)
   //   return axios.put('/api/users', data)
   // },
-
-  
-
 };
-

@@ -35,10 +35,11 @@ router.route("/strike/:id").put((req, res) => {
   .catch(err => res.status(422).json(err));
 })
 
-router.route("/delete/:id").delete((req, res) => {
+router.route("/delete/:item/:user").delete((req, res) => {
   // console.log("!!!!!")
-  // console.log(req.params.id)
-  remove.delete(req.params.id)
+  // console.log(req.params.item)
+  // console.log(req.params.user)
+  remove.delete(req.params.item, req.params.user)
   .then(result => {
     res.json(result)
   })
@@ -66,7 +67,8 @@ router.route("/setstore/:id").put((req, res) => {
 })
 
 router.route("/login").put((req, res) => {
-
+    // console.log("login")
+    // console.log(req.body)
   login.checkPassword(req.body)
     .then(dbresults => {
       // console.log(dbresults)

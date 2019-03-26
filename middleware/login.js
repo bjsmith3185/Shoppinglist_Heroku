@@ -6,25 +6,27 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.Users.findOne({ name: data.name })
         .then(nameReturn => {
-          // console.log(nameReturn);
+          console.log(nameReturn);
 
-          if (nameReturn.password === data.password) {
-            // console.log("passwords match");
-            // request to get all shopping data
-            loadShopping
-              .pageLoad(nameReturn._id)
-              .then(shoppingResult => {
-                // console.log("shopping results");
-                // console.log(shoppingResult);
-                resolve(shoppingResult);
-              })
-              .catch(err => console.log(err));
-          } else {
-            // console.log("password is incorrect");
-            let data = {};
-            data.errors.password = "Password is incorrect";
-            resolve(data);
-          }
+          resolve(nameReturn._id)
+
+          // if (nameReturn.password === data.password) {
+          //   // console.log("passwords match");
+          //   // request to get all shopping data
+          //   loadShopping
+          //     .pageLoad(nameReturn._id)
+          //     .then(shoppingResult => {
+          //       // console.log("shopping results");
+          //       // console.log(shoppingResult);
+          //       resolve(shoppingResult);
+          //     })
+          //     .catch(err => console.log(err));
+          // } else {
+          //   // console.log("password is incorrect");
+          //   let data = {};
+          //   data.errors.password = "Password is incorrect";
+          //   resolve(data);
+          // }
         })
         .catch(err => console.log(err));
     });

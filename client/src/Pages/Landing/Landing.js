@@ -137,13 +137,13 @@ const mapStateToProps = state => {
   // console.log("state coming into Landing.js");
   // console.log(state);
   return {
-    name: state.name,
-    allList: state.allList,
-    countRemaining: state.countRemaining,
-    myStore: state.myStore,
-    storeList: state.storeList,
-    storeNames: state.storeNames,
-    password: state.password,
+    // name: state.name,
+    // allList: state.allList,
+    // countRemaining: state.countRemaining,
+    // myStore: state.myStore,
+    // storeList: state.storeList,
+    // storeNames: state.storeNames,
+    // password: state.password,
     userId: state.userId,
   };
 };

@@ -10,26 +10,10 @@ import List from "../../components/List";
 import Header from "../../components/Header";
 
 class HomePage extends Component {
-  componentDidMount() {
-  // componentWillMount() {
-    //  this.props.loadAllData(this.props.userId);
-
-    // Need a function to save user_id to local storeage
-
-    // use sessionStoreage to determine if the page is reloaded
-    // save the user_id to local storage
-
-    // If the page is reloaded
-          //  use the user_id from local storage
-
-          // if (sessionStorage.getItem("is_reloaded")) alert('Reloaded!');
-
-          // sessionStorage.setItem("is_reloaded", true);
-
+  // componentDidMount() {
+  componentWillMount() {
       const user_id = localStorage.getItem("userId");
-      // console.log(user_id)
       this.loadAllData(user_id)
-
   }
 
   loadAllData = (id) => {
@@ -37,12 +21,29 @@ class HomePage extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    // console.log("rendering")
+    // console.log(this.props.allList);
+
+    // const listArea =  () => {
+    //   if( this.props.allList.length === 0 ) {
+    //     return (
+    //       <div className="home-no-list text-center">
+    //       There are no items to display
+    //     </div>
+    //     )
+    //   } else {
+    //     return (
+    //       <List />
+    //     )
+    //   }
+    // }
 
     return (
       <div className="App ">
         <Header />
+
         <List />
+        
       </div>
     );
   }
@@ -53,7 +54,8 @@ const mapStateToProps = state => {
   // console.log("state coming into home.js");
   // console.log(state);
   return {
-   userId: state.userId
+   userId: state.userId,
+   allList: state.allList
   };
 };
 
