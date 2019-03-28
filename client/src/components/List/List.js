@@ -10,17 +10,14 @@ class List extends Component {
   };
 
   delete = item_id => {
-    // console.log("deleting");
-    // console.log(localStorage.getItem("userId"))
     let deleteData = {
       item: item_id,
       user: localStorage.getItem("userId")
-    }
-     this.props.removeItem(deleteData);
+    };
+    this.props.removeItem(deleteData);
   };
 
   strike = (id, strikeThru) => {
-    // console.log("strike thru")
     if (strikeThru) {
       strikeThru = false;
     } else {
@@ -32,54 +29,55 @@ class List extends Component {
   render() {
     return (
       <div className="list">
-
-        <div className="list-store-area">
-          <div className="list-store-title text-center">
-          {this.props.myStore}
+        <div>
+          <div className="list-store-area">
+            <div className="list-store-title text-center">
+              {this.props.myStore
+                .toLowerCase()
+                .split(" ")
+                .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                .join(" ")}
+            </div>
+            <div className="list-qty-remaining text-right">
+              Items Remaining {this.props.countRemaining}
+            </div>
           </div>
-          <div className="list-qty-remaining text-right">
-          Items Remaining {this.props.countRemaining}
-          </div>
-        </div>
 
-        {this.props.storeList && (
-          <div className="item-list-container">
-
-            {this.props.storeList.map((item, i) => (
-              <div className="item"
-                key={i}
-              >
-
-                {item.strikeThru ? (
-                  <div 
-                    className="item-container text-left strike"
-                    onClick={() => this.strike(item._id, item.strikeThru)}
+          {this.props.storeList && (
+            <div className="item-list-container">
+              {this.props.storeList.map((item, i) => (
+                <div className="item" key={i}>
+                  {item.strikeThru ? (
+                    <div
+                      className="item-container text-left strike"
+                      onClick={() => this.strike(item._id, item.strikeThru)}
                     >
-                    <span className="item-name">{item.item}</span>
-                    <span className="item-qty">{item.qty}</span>
-                  </div>
-                ) : (
-                  <div 
-                    className="item-container text-left"
-                    onClick={() => this.strike(item._id, item.strikeThru)}
+                      <span className="item-name">{item.item}</span>
+                      <span className="item-qty">{item.qty}</span>
+                    </div>
+                  ) : (
+                    <div
+                      className="item-container text-left"
+                      onClick={() => this.strike(item._id, item.strikeThru)}
                     >
-                    <span className="item-name">{item.item}</span>
-                    <span className="item-qty">&#40; {item.qty} &#41;</span>
-                  </div>
-                )}
+                      <span className="item-name">{item.item}</span>
+                      <span className="item-qty">&#40; {item.qty} &#41;</span>
+                    </div>
+                  )}
 
-                <div className="item-btn-container text-right">
-                  <div
-                    className="item-delete-btn"
-                    onClick={() => this.delete(item._id)}
-                  >
-                    X
+                  <div className="item-btn-container text-right">
+                    <div
+                      className="item-delete-btn"
+                      onClick={() => this.delete(item._id)}
+                    >
+                      X
+                    </div>
                   </div>
                 </div>
-              </div> // end of item
-            ))}
-          </div> // end of item-list-container 
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -87,8 +85,6 @@ class List extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("Props in List component");
-  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -101,18 +97,13 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
   return {
-
     checkOff: (id, strikeThru) => {
       dispach({ type: "STRIKE_THRU", val: { id: id, strikeThru: strikeThru } });
     },
 
-    removeItem: (data) => {
+    removeItem: data => {
       dispach({ type: "DELETE_ITEM", val: data });
-    },
-    // removeItem: id => {
-    //   dispach({ type: "DELETE_ITEM", val:id });
-    // },
-
+    }
   };
 };
 

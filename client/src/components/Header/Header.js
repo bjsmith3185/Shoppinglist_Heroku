@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as ROUTES from "../../constants/routes";
 // Redux
 import { connect } from "react-redux";
 import Form from "../Form";
@@ -15,7 +14,7 @@ class Header extends Component {
     stores: [],
     item: "",
     store: "",
-    qty: "",
+    qty: ""
   };
 
   componentDidMount() {}
@@ -26,11 +25,10 @@ class Header extends Component {
 
   moreItems = event => {
     event.preventDefault();
-    // console.log("button was clicked");
     let data = {
-        item: this.state.item,
-        store: this.state.store,
-        qty: this.state.qty
+      item: this.state.item,
+      store: this.state.store,
+      qty: this.state.qty
     };
     let user = this.props.userId;
 
@@ -46,13 +44,12 @@ class Header extends Component {
   showDropdown = () => {
     if (this.state.showDropDownMenu) {
       this.setState({
-        showDropDownMenu: false,
-        
+        showDropDownMenu: false
       });
     } else {
       this.setState({
         showDropDownMenu: true,
-        showInputForm: false,
+        showInputForm: false
       });
     }
   };
@@ -65,18 +62,15 @@ class Header extends Component {
     } else {
       this.setState({
         showInputForm: true,
-        showDropDownMenu: false,
+        showDropDownMenu: false
       });
     }
   };
 
   selectStore = store => {
-    // console.log(store);
-    // console.log("selecting store")
-    // console.log(this.props.userId)
     const myStore = {
       userId: this.props.userId,
-     myStore: store
+      myStore: store
     };
     this.props.setStore(myStore);
     this.setState({
@@ -95,8 +89,6 @@ class Header extends Component {
   };
 
   openStores = () => {
-    // console.log("clicked open stores");
-    // this.storeNames();
     if (this.state.showStores) {
       this.setState({
         showStores: false
@@ -109,36 +101,37 @@ class Header extends Component {
   };
 
   signOutUser = () => {
-    console.log("Good Bye")
-    this.props.signOut()
-    this.props.history.push(ROUTES.LANDING)
-  }
+    console.log("Good Bye");
+    this.props.signOut(this.props.userId, this.props.history);
+  };
 
   render() {
     return (
       <div className="header-area">
-
         <div className="top-area">
-
           <div className="left-box text-center" onClick={this.showDropdown}>
-          <i className="fas fa-bars" />
-          </div>
-        
-          <div className="center-box text-center">
-          <div className="top-title text-center">Hey Don't Forget</div>
-          </div>
-        
-          <div className="right-box text-center" onClick={this.openInputForm}>
-          <i className="fas fa-plus" />
+            <i className="fas fa-bars" />
           </div>
 
+          <div className="center-box text-center">
+            <div className="top-title text-center">Hey Don't Forget</div>
+          </div>
+
+          <div className="right-box text-center" onClick={this.openInputForm}>
+            <i className="fas fa-plus" />
+          </div>
         </div>
-     
 
         {/* Title on small screen  */}
         <div className="text-center bottom-title">Hey Don't Forget</div>
 
-        <div className="header-name-area text-center">{this.props.name}</div>
+        <div className="header-name-area text-center">
+          {this.props.name
+            .toLowerCase()
+            .split(" ")
+            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(" ")}
+        </div>
 
         {/* dropdown menu goes here  */}
 
@@ -169,8 +162,6 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into Header.js");
-  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -178,7 +169,8 @@ const mapStateToProps = state => {
     storeList: state.storeList,
     storeNames: state.storeNames,
     myStore: state.myStore,
-    userId: state.userId
+    userId: state.userId,
+    history: state.history
   };
 };
 
@@ -187,22 +179,23 @@ const mapDispachToProps = dispach => {
   return {
     addItem: (user, data) => {
       dispach({
-        type: 'ADD_ITEM',
-        val: {user: user, data: data}
+        type: "ADD_ITEM",
+        val: { user: user, data: data }
       });
     },
 
     setStore: data => {
       dispach({
-        type: 'SET_STORE',
+        type: "SET_STORE",
         val: data
       });
     },
 
-    signOut: () => {
+    signOut: (userId, history) => {
       dispach({
-        type: 'SIGN_OUT'
-      })
+        type: "SIGN_OUT",
+        payload: { userId, history }
+      });
     }
   };
 };
@@ -211,4 +204,3 @@ export default connect(
   mapStateToProps,
   mapDispachToProps
 )(Header);
-

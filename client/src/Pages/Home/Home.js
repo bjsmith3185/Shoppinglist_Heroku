@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import { browserHistory } from 'react-router';
 import "./Home.css";
-
-
 
 // Redux
 import { connect } from "react-redux";
@@ -10,40 +7,22 @@ import List from "../../components/List";
 import Header from "../../components/Header";
 
 class HomePage extends Component {
-  // componentDidMount() {
   componentWillMount() {
-      const user_id = localStorage.getItem("userId");
-      this.loadAllData(user_id)
-  }
-
-  loadAllData = (id) => {
-   this.props.loadAllData(id)
+    const { history } = this.props;
+    const user_id = localStorage.getItem("userId");
+    this.props.loadAllData(user_id, history);
   }
 
   render() {
-    // console.log("rendering")
-    // console.log(this.props.allList);
-
-    // const listArea =  () => {
-    //   if( this.props.allList.length === 0 ) {
-    //     return (
-    //       <div className="home-no-list text-center">
-    //       There are no items to display
-    //     </div>
-    //     )
-    //   } else {
-    //     return (
-    //       <List />
-    //     )
-    //   }
-    // }
-
     return (
       <div className="App ">
         <Header />
 
-        <List />
-        
+        {!this.props.myStore ? (
+          <div className="text-center home-no-list">No items on your list</div>
+        ) : (
+          <List />
+        )}
       </div>
     );
   }
@@ -51,19 +30,21 @@ class HomePage extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into home.js");
-  // console.log(state);
   return {
-   userId: state.userId,
-   allList: state.allList
+    userId: state.userId,
+    allList: state.allList,
+    myStore: state.myStore
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
-    loadAllData: (data) => {
-      // dispach({ type: "LOAD_DATA", val: '5c8e73b6add5286e74485f43' });
-      dispach({ type: "LOAD_DATA", val: data });
+    loadAllData: (id, history) => {
+      dispach({ type: "LOAD_DATA", payload: { id, history } });
+    },
+
+    setHistory: history => {
+      dispach({ type: "SET_HISTORY", payload: { history } });
     }
   };
 };
@@ -72,5 +53,3 @@ export default connect(
   mapStateToProps,
   mapDispachToProps
 )(HomePage);
-
-

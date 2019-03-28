@@ -40,14 +40,6 @@ export default {
     return axios.put("/api/system/login", data);
   },
 
-  // getAllData: function () {
-  //   return axios.get('./api/system/all')
-  // },
-
-  // checkOff: function (id, data) {
-  //   console.log("api")
-  //   return axios.put('./api/system/checkoff/' + id, data)
-  // },
 
   // =============== shopping
 
@@ -59,14 +51,6 @@ export default {
     return axios.get("./api/shopping");
   },
 
-  // deleteItem: function (id) {
-  //   return axios.delete('./api/shopping/' + id)
-  // },
-
-  // checkOff: function (id, data) {
-  //   console.log("api")
-  //   return axios.put('./api/shopping/' + id, data)
-  // },
 
   //==================== User
 
@@ -74,9 +58,5 @@ export default {
     return axios.put("/api/users/signout/" + id);
   }
 
-  // updateUserData: function (data) {
-  //   console.log("user update api")
-  //   console.log(data)
-  //   return axios.put('/api/users', data)
-  // },
+  
 };

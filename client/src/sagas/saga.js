@@ -1,124 +1,123 @@
-import { takeLatest, put } from 'redux-saga/effects';
-// import * as ROUTES from "../constants/routes";
-import API from '../utils/API';
-// import { withRouter, history } from 'react-router-dom';
+import { takeLatest, put } from "redux-saga/effects";
+import API from "../utils/API";
 
-
-
+//        SAGAS
 
 //   Adds an item to the shopping collection
 function* addItemAsync(data) {
-    // console.log(data)
-    const myData = yield API.addItem(data.val.user, data.val.data)
-//    console.log(myData)
-    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
+  const myData = yield API.addItem(data.val.user, data.val.data);
+  yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
 export function* watchAddItem() {
-    yield takeLatest('ADD_ITEM', addItemAsync)
+  yield takeLatest("ADD_ITEM", addItemAsync);
 }
 
 //--------------------------------------------------------
 //    Load all data when Home page loads
 function* loadDataAsync(data) {
-    // console.log(data)
-    const myData = yield API.loadData(data.val)
-    yield put({type: 'SET_ALL_DATA', val: myData.data});
+  const myData = yield API.loadData(data.payload.id);
+myData.data.signedIn = true;
+  myData.data.history = data.payload.history;
+  yield put({ type: "SET_ALL_DATA", val: myData.data });
 }
 
 export function* watchLoadData() {
-    yield takeLatest('LOAD_DATA', loadDataAsync)
+  yield takeLatest("LOAD_DATA", loadDataAsync);
 }
 
 //--------------------------------------------------------
 //  strike thru list item
-
 function* strikeThruAsync(data) {
-    const myData = yield API.strikeThru(data.val.id, {strikeThru: data.val.strikeThru})
-    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
+  const myData = yield API.strikeThru(data.val.id, {
+    strikeThru: data.val.strikeThru
+  });
+  yield put({ type: "SET_STORELIST_COUNT", val: myData.data });
 }
 
 export function* watchStrikeThru() {
-    yield takeLatest('STRIKE_THRU', strikeThruAsync)
+  yield takeLatest("STRIKE_THRU", strikeThruAsync);
 }
 
 //-------------------------------------------------------------------
-
 // delete item
-
 function* deleteItemAsync(data) {
-    // console.log("*****")
-    // console.log(data.val)
-    const myData = yield API.deleteItem(data.val.item, data.val.user)
-    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
+  const myData = yield API.deleteItem(data.val.item, data.val.user);
+  yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
 export function* watchDeleteItem() {
-    yield takeLatest('DELETE_ITEM', deleteItemAsync)
+  yield takeLatest("DELETE_ITEM", deleteItemAsync);
 }
 
 //-------------------------------------------------------------------
 //  select store
 function* setStoreAsync(data) {
-    // console.log(data)
-    const myData = yield API.selectStore(data.val.userId, {myStore: data.val.myStore})
-    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
+  const myData = yield API.selectStore(data.val.userId, {
+    myStore: data.val.myStore
+  });
+  yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
 export function* watchSetStore() {
-    yield takeLatest('SET_STORE', setStoreAsync)
+  yield takeLatest("SET_STORE", setStoreAsync);
 }
 //-------------------------------------------------------------------
 
 //   Log in user
 function* logInAsync(data) {
-    // console.log(data)
-    const myData = yield API.logIn(data.val)
-//     console.log('back in the saga')
-//    console.log(myData)
+  try {
+    let loginInfo = {
+      name: data.payload.name,
+      password: data.payload.password
+    };
+    let history = data.payload.history;
 
-    yield put({type: 'SET_USERID', val: myData.data});
+    const result = yield API.logIn(loginInfo);
+    if (result.data.userId) {
+
+       
+      localStorage.setItem("userId", result.data.userId);
+      yield put({ type: "SET_USERID", val: result.data.userId });
+      history.push("/home");
+    } else {
+      console.log("incorrect login");
+    }
+  } catch (e) {
+    console.log("there was an error reaching the server");
+    console.log(e);
+  }
 }
 
 export function* watchLogIn() {
-    yield takeLatest('LOG_IN', logInAsync)
+  yield takeLatest("LOG_IN", logInAsync);
 }
 
 //--------------------------------------------------------
-
 
 //   Log out user
 function* signOutAsync(data) {
-
-    // No need to go to the server for this one now
-    // maybe with a later version
-
-    yield put({type: 'SIGN_OUT', val: data});
+  let history = data.payload.history;
+  if (data.payload.userId) {
+    localStorage.removeItem("userId");
+    history.push("/");
+  }
+    yield put({ type: "SIGN_OUT_ASYNC", val: data });
 }
 
 export function* watchSignOut() {
-    yield takeLatest('SIGN_OUT', signOutAsync)
+  yield takeLatest("SIGN_OUT", signOutAsync);
 }
 
 //--------------------------------------------------------
 
-// //   Log in user backup
-// function* logInAsync(data) {
-//     // console.log(data)
-//     const myData = yield API.logIn(data.val)
-// //     console.log('back in the saga')
-// //    console.log(myData)
+//  set history
+function* setHistoryAsync(data) {
+  yield put({ type: "SET_HISTORY_ASYNC", val: data.payload.history });
+}
 
-//     yield put({type: 'SET_ALL_DATA', val: myData.data});
-// }
-
-// export function* watchLogIn() {
-//     yield takeLatest('LOG_IN', logInAsync)
-// }
-
-
-
-
-
-
+export function* watchSetHistory() {
+  yield takeLatest("SET_HISTORY", setHistoryAsync);
+}
+//---------------------------------------
 
