@@ -12,8 +12,8 @@ const initState = {
     signedIn: false,
 }
 
-export default initState
 
+export default initState
 
 
 

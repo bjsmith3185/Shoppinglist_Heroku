@@ -1,6 +1,5 @@
 
 import { createStore, applyMiddleware } from 'redux';
-
 import setData from '../reducer/reducers';
 // Saga
 import createSagaMiddleware from 'redux-saga';

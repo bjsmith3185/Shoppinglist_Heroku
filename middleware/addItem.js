@@ -1,6 +1,7 @@
 const shopping = require("../controllers/shoppingController");
 const users = require("../controllers/usersController");
 const list = require("./storeList");
+const count = require("./countRemaining");
 const storeNames = require("./storeNames");
 // ADDS item in shopping model
 
@@ -15,6 +16,7 @@ module.exports = {
           let newStore = {
             myStore: data.store
           };
+
           users
             .update(userId, newStore)
             .then(userResult => {
@@ -37,7 +39,6 @@ module.exports = {
                             countRemaining: specificList.countRemaining,
                             storeNames: storeNames
                           };
-
                           resolve(returnData);
                         })
                         .catch(err => console.log(err));

@@ -5,9 +5,10 @@ const storeNames = require("./storeNames");
 
 module.exports = {
   pageLoad: function(id) {
+    // console.log("in load alldata middleware");
+    // console.log(id);
     return new Promise((resolve, reject) => {
       // takes in user._id but we dong have one yet
-
       users
         .findById(id)
         .then(userResult => {
@@ -21,7 +22,9 @@ module.exports = {
                   // if no store is set for user.myStore
                   let myTempStore = "";
                   if (!userResult.myStore) {
+                    // console.log("no user myStore saved");
                     myTempStore = storeNames[0];
+                    // console.log(myTempStore);
                   } else {
                     myTempStore = userResult.myStore;
                   }

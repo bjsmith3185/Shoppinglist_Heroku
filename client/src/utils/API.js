@@ -14,7 +14,6 @@ export default {
   //============ system
 
   loadData: function(user_id) {
-    // console.log(user_id)
     return axios.get("/api/system/load/" + user_id);
   },
 
@@ -31,15 +30,12 @@ export default {
   },
 
   addItem: function(user, data) {
-    // console.log(data)
     return axios.post("/api/system/addItem/" + user, data);
   },
 
   logIn: function(data) {
-    // console.log(data)
     return axios.put("/api/system/login", data);
   },
-
 
   // =============== shopping
 
@@ -51,6 +47,14 @@ export default {
     return axios.get("./api/shopping");
   },
 
+  // deleteItem: function (id) {
+  //   return axios.delete('./api/shopping/' + id)
+  // },
+
+  // checkOff: function (id, data) {
+  //   console.log("api")
+  //   return axios.put('./api/shopping/' + id, data)
+  // },
 
   //==================== User
 
@@ -58,5 +62,9 @@ export default {
     return axios.put("/api/users/signout/" + id);
   }
 
-  
+  // updateUserData: function (data) {
+  //   console.log("user update api")
+  //   console.log(data)
+  //   return axios.put('/api/users', data)
+  // },
 };

@@ -6,11 +6,15 @@ module.exports = {
   },
 
   update: function(id, data) {
-    return db.Users.findOneAndUpdate({ _id: id }, data, { new: true });
+    return db.Users.findOneAndUpdate(
+      { _id: id },
+      data,
+      { new: true }
+    );
   },
 
   findById: function(id) {
     return db.Users.findById({ _id: id });
-  }
+  },
 
 };

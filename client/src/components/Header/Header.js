@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Form from "../Form";
 import Menu from "../Menu";
-
 import "./Header.css";
 
 class Header extends Component {
@@ -17,7 +16,9 @@ class Header extends Component {
     qty: ""
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -88,8 +89,8 @@ class Header extends Component {
     }
   };
 
-  openStores = () => {
-    if (this.state.showStores) {
+  openStores = store => {
+    if (store) {
       this.setState({
         showStores: false
       });
@@ -101,7 +102,6 @@ class Header extends Component {
   };
 
   signOutUser = () => {
-    console.log("Good Bye");
     this.props.signOut(this.props.userId, this.props.history);
   };
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Landing.css";
-
 // Redux
 import { connect } from "react-redux";
 

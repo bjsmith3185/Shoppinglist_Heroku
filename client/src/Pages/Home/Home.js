@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Home.css";
-
 // Redux
 import { connect } from "react-redux";
 import List from "../../components/List";

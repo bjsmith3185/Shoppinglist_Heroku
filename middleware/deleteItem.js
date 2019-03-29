@@ -35,6 +35,7 @@ module.exports = {
                             list
                               .storeList(setStore.myStore)
                               .then(results => {
+                                results.storeNames = allStores;
                                 return resolve(results);
                               })
                               .catch(err => console.log(err));

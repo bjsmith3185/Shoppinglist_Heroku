@@ -1,5 +1,6 @@
 const users = require("../controllers/usersController");
 const storeList = require("./storeList");
+const storeNames = require("./storeNames");
 
 // updates the slected store in the users model
 // takes in storeName and user_id
@@ -12,12 +13,13 @@ module.exports = {
           storeList
             .storeList(dbresult.myStore)
             .then(storeResult => {
-              let data = {
-                myStore: dbresult.myStore,
-                storeList: storeResult.storeList,
-                countRemaining: storeResult.countRemaining
-              };
-              resolve(data);
+              storeNames
+                .nameList(storeResult.storeList)
+                .then(allData => {
+                  storeResult.storeNames = allData;
+                  resolve(storeResult);
+                })
+                .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
         })

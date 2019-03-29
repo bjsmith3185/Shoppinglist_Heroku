@@ -6,7 +6,6 @@ const Form = props => (
     <div className="form-title text-center">Add Item to List</div>
 
     <div className="line-item">
-  
       <label className="line-title">Item</label>
       <input
         className="line-input"
@@ -42,12 +41,14 @@ const Form = props => (
       />
     </div>
 
-      <div className="form-btn-area text-center">
-      <button className="text-center form-btn btn btn-info" onClick={props.addToList}>
-      Add
-    </button>
-      </div>
-     
+    <div className="form-btn-area text-center">
+      <button
+        className="text-center form-btn btn btn-info"
+        onClick={props.addToList}
+      >
+        Add
+      </button>
+    </div>
   </div>
 );
 

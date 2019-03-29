@@ -1,8 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
 import API from "../utils/API";
 
-//        SAGAS
-
 //   Adds an item to the shopping collection
 function* addItemAsync(data) {
   const myData = yield API.addItem(data.val.user, data.val.data);
@@ -17,7 +15,7 @@ export function* watchAddItem() {
 //    Load all data when Home page loads
 function* loadDataAsync(data) {
   const myData = yield API.loadData(data.payload.id);
-myData.data.signedIn = true;
+  myData.data.signedIn = true;
   myData.data.history = data.payload.history;
   yield put({ type: "SET_ALL_DATA", val: myData.data });
 }
@@ -40,6 +38,7 @@ export function* watchStrikeThru() {
 }
 
 //-------------------------------------------------------------------
+
 // delete item
 function* deleteItemAsync(data) {
   const myData = yield API.deleteItem(data.val.item, data.val.user);
@@ -75,8 +74,6 @@ function* logInAsync(data) {
 
     const result = yield API.logIn(loginInfo);
     if (result.data.userId) {
-
-       
       localStorage.setItem("userId", result.data.userId);
       yield put({ type: "SET_USERID", val: result.data.userId });
       history.push("/home");
@@ -102,7 +99,7 @@ function* signOutAsync(data) {
     localStorage.removeItem("userId");
     history.push("/");
   }
-    yield put({ type: "SIGN_OUT_ASYNC", val: data });
+  yield put({ type: "SIGN_OUT_ASYNC", val: data });
 }
 
 export function* watchSignOut() {
@@ -120,4 +117,3 @@ export function* watchSetHistory() {
   yield takeLatest("SET_HISTORY", setHistoryAsync);
 }
 //---------------------------------------
-
