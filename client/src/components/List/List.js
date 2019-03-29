@@ -75,14 +75,14 @@ class List extends Component {
     }
 
     let updated = {
-      item: item,
-      qty: qty,
-      store: store
+      item: item.toLowerCase(),
+      qty: qty.toLowerCase(),
+      store: store.toLowerCase(),
     };
 
     let userInfo = {
       userId: this.props.userId,
-      myStore: this.props.myStore
+      myStore: this.props.myStore.toLowerCase(),
     };
 
     this.props.updateList(this.state.selected_id, updated, userInfo);

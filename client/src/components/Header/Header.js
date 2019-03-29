@@ -27,8 +27,8 @@ class Header extends Component {
   moreItems = event => {
     event.preventDefault();
     let data = {
-      item: this.state.item,
-      store: this.state.store,
+      item: this.state.item.toLowerCase(),
+      store: this.state.store.toLowerCase(),
       qty: this.state.qty
     };
     let user = this.props.userId;
