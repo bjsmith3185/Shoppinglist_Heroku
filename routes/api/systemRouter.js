@@ -5,6 +5,7 @@ const remove = require("../../middleware/deleteItem");
 const addItem = require("../../middleware/addItem");
 const updateStore = require("../../middleware/updateStore");
 const login = require("../../middleware/login");
+const updateList = require("../../middleware/updateList");
 
 // route  /api/system
 
@@ -58,6 +59,14 @@ router.route("/login").put((req, res) => {
     .checkPassword(req.body)
     .then(dbresults => {
       res.json(dbresults);
+    })
+    .catch(err => res.status(422).json(err));
+});
+
+router.route("/updatelist/:id").put((req, res) => {
+  updateList.edit(req.params.id, req.body)
+    .then(result => {
+      res.json(result);
     })
     .catch(err => res.status(422).json(err));
 });

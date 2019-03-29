@@ -38,12 +38,13 @@
 }
 
 .edit-link {
-  color: gray;
+  color: black;
+  cursor: pointer;
   
 }
 
 .signout-link {
-  color: black;
+  color: blue;
 }
 
 .close-menu-link {

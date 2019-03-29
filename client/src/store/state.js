@@ -10,6 +10,7 @@ const initState = {
     userId: '',
     history: {},
     signedIn: false,
+    editing: false,
 }
 
 

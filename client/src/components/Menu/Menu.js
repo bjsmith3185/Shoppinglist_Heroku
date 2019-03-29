@@ -30,7 +30,13 @@ const Menu = props => (
       </div>
     )}
 
-    <div className="menu-link edit-link">- Edit List (coming soon)</div>
+    <div 
+      className="menu-link edit-link" 
+      onClick={props.editList}
+      >
+      - Edit List
+    </div>
+
     <div className="menu-link signout-link" onClick={props.signOutUser}>
       - Signout
     </div>

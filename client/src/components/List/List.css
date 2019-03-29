@@ -14,16 +14,52 @@
   font-family: 'Kalam', cursive;
 }
 
+.update-edit-area {
+  color: red;
+  display: inline-block;
+  width: 45%;
+}
+
 .list-qty-remaining {
-  font-size: 20px;
+  display: inline-block;
+  width: 55%;
+  font-size: 15px;
+  color: rgb(141, 140, 140);
+  font-family: 'Kalam', cursive;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+.list-qty-remaining-solo {
+  font-size: 17px;
   color: rgb(141, 140, 140);
   font-family: 'Kalam', cursive;
   font-weight: bold;
   padding-right: 15px;
 }
 
+.save-edit-btn {
+  display: inline-block;
+  color: green;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.cancel-edit-btn {
+  display: inline-block;
+  color: red;
+  font-weight: bold;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+
+
+
+
 .item-list-container {
   width: 100%;
+  border-top: 1px solid gray;
   /* margin-left: 15px; */
 }
 
@@ -49,11 +85,11 @@ cursor: pointer;
   font-weight: bold;
   /* font-family: 'Patrick Hand', cursive; */
   font-family: 'Kalam', cursive;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .item-qty {
-  margin-left: 25px;
+  margin-left: 12px;
   font-weight: bold;
   /* font-family: 'Patrick Hand', cursive; */
   font-family: 'Kalam', cursive;
@@ -83,20 +119,49 @@ cursor: pointer;
 .strike {
   text-decoration: line-through;
   color: red;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
   opacity: .7;
 }
 
+.item-edit-btn {
+  color: blue;
+  font-family: 'Kalam', cursive;
+  font-size: 14px;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.list-edit-window {
+  width: 100%;
+  padding-bottom: 20px;
+  background: yellow;
+
+}
+
+.list-edit {
+  background: yellow;
+  color: black;
+  padding-left: 5px;
 
 
+}
+
+.input-title {
+  font-weight: bold;
+  color: black;
+  font-family: 'Kalam', cursive;
+  font-size: 18px;
+  margin-top: 5px;
+}
 
 
-
-
-
-
-
+.edit-submit-btn {
+  margin-top: 10px;
+  background: green;
+  color: white;
+  cursor: pointer;
+}
 
 
 

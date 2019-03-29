@@ -19,6 +19,7 @@ const setData = (state = initialState, action) => {
       userId: action.val.userId,
       history: action.val.history,
       signedIn: action.val.signedIn,
+      editing: false,
     };
   }
 
@@ -35,8 +36,8 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count, store
   if (action.type === "SET_STORELIST_COUNT_STORE") {
-    console.log("reducer, all data");
-    console.log(action.val);
+    // console.log("reducer, all data");
+    // console.log(action.val);
 
 
     return {
@@ -97,6 +98,7 @@ const setData = (state = initialState, action) => {
       storeNames: [],
       history: {},
       signedIn: false,
+      editing: false,
     };
   }
 
@@ -114,9 +116,22 @@ const setData = (state = initialState, action) => {
       allList: '',
       storeList: '',
       storeNames: '',
-      history: action.val
+      history: action.val,
+      editing: false,
     };
   }
+
+  // initiate edit mode
+  if (action.type === "EDIT_ASYNC") {
+    console.log("reducer, EDIT");
+    console.log(action.val)
+    return {
+      ...state,
+      editing: action.val.editing
+    };
+  }
+
+
 
   return newState;
 };

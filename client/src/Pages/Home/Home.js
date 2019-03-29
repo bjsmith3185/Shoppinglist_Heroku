@@ -6,6 +6,8 @@ import List from "../../components/List";
 import Header from "../../components/Header";
 
 class HomePage extends Component {
+
+  
   componentWillMount() {
     const { history } = this.props;
     const user_id = localStorage.getItem("userId");
@@ -29,10 +31,12 @@ class HomePage extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
+
   return {
     userId: state.userId,
     allList: state.allList,
-    myStore: state.myStore
+    myStore: state.myStore,
+    editing: state.editing,
   };
 };
 

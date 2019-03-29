@@ -29,7 +29,20 @@ list page:
 
 
 
+Editing list
 
+    - remove x is already there
+
+    - edit button in drop down menu
+        - on click
+            - close the dropdown menu
+            - show the items for the current store in input boxes to be edited
+
+        - to save the edited item
+            - maybe a 'save' button on the left of 'items remaining' line.
+            - maybe a 'cancel' button beside save button.
+
+                - this would submit all changes made.
 
 
 

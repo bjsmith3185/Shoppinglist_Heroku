@@ -117,3 +117,41 @@ export function* watchSetHistory() {
   yield takeLatest("SET_HISTORY", setHistoryAsync);
 }
 //---------------------------------------
+
+// updating store with value to show update window
+function* editAsync(data) {
+  // // dont need to go to the server here
+  // just update the store with a value 
+  // to show edit fields
+ yield put({ type: "EDIT_ASYNC", val: data.payload } );
+}
+
+export function* watchEdit() {
+  yield takeLatest("EDIT", editAsync);
+}
+//---------------------------------------
+
+//  update/edit list
+function* updateListAsync(data) {
+  const updated = yield API.updateShoppingList(data.val.id, data.val.payload)
+ yield put({ type: "SET_STORELIST_COUNT_STORE", val: updated.data } );
+}
+
+export function* watchUpdateList() {
+  yield takeLatest("UPDATE_LIST", updateListAsync);
+}
+//---------------------------------------
+
+// canceling the edit window
+function* cancelUpdateAsync(data) {
+  // // dont need to go to the server here
+  // just update the store with a value 
+  // to show edit fields
+ yield put({ type: "EDIT_ASYNC", val: data.payload } );
+}
+
+export function* watchCancelUpdate() {
+  yield takeLatest("CANCEL_UPDATE", cancelUpdateAsync);
+}
+//---------------------------------------
+
