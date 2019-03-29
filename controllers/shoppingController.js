@@ -6,7 +6,6 @@ module.exports = {
   },
 
   findAll: function() {
-    console.log("findall");
     return db.Shopping.find({}).sort({ store: 1 });
   },
 

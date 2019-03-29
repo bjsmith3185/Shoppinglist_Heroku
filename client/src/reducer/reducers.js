@@ -35,8 +35,8 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count, store
   if (action.type === "SET_STORELIST_COUNT_STORE") {
-    // console.log("reducer, all data");
-    // console.log(action.val);
+    console.log("reducer, all data");
+    console.log(action.val);
 
 
     return {
