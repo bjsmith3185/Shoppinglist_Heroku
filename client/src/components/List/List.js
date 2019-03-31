@@ -29,14 +29,14 @@ class List extends Component {
     this.props.removeItem(deleteData);
   };
 
-  // strike = (id, strikeThru) => {
-  //   if (strikeThru) {
-  //     strikeThru = false;
-  //   } else {
-  //     strikeThru = true;
-  //   }
-  //   this.props.checkOff(id, strikeThru);
-  // };
+  strike = (id, strikeThru) => {
+    if (strikeThru) {
+      strikeThru = false;
+    } else {
+      strikeThru = true;
+    }
+    this.props.checkOff(id, strikeThru);
+  };
 
   edit = id => {
     let editWindow;
