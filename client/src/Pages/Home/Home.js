@@ -19,9 +19,10 @@ class HomePage extends Component {
   
           <Header />
 
-          <InfoBar />
-     
-          <List />
+          {this.props.myStore && <InfoBar />}
+  
+
+          {this.props.storeList && <List />}
 
       </div>
     );
@@ -34,7 +35,8 @@ const mapStateToProps = state => {
     userId: state.userId,
     allList: state.allList,
     myStore: state.myStore,
-    editing: state.editing
+    editing: state.editing,
+    storeList: state.storeList,
   };
 };
 
