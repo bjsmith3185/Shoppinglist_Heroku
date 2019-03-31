@@ -5,10 +5,12 @@ const setData = (state = initialState, action) => {
 
   // open/close dropdown menu
   if (action.type === "SET_DROPDOWN_MENU") {
-    // console.log(action);
+    console.log(action.val);
     return {
       ...state,
-      showDropdownMenu: action.val
+      showDropdownMenu: action.val.showDropdownMenu,
+      showAddItemMenu: action.val.showAddItemMenu,
+      showEditMenu: action.val.showEditMenu,
     };
   }
 
@@ -16,7 +18,9 @@ const setData = (state = initialState, action) => {
   if (action.type === "SHOW_ADD_ITEM_AREA") {
     return {
       ...state,
-      showAddItemMenu: action.val
+      showDropdownMenu: action.val.showDropdownMenu,
+      showAddItemMenu: action.val.showAddItemMenu,
+      showEditMenu: action.val.showEditMenu,
     };
   }
 
@@ -36,6 +40,8 @@ const setData = (state = initialState, action) => {
       editing: action.val.editing,
       showDropdownMenu: action.val.showDropdownMenu,
       showEditMenu: action.val.showEditMenu,
+      showDropdownMenu: action.val.showDropdownMenu,
+      showAddItemMenu: action.val.showAddItemMenu,
     };
   }
 
@@ -48,6 +54,8 @@ const setData = (state = initialState, action) => {
       selectedStore: action.val.selectedStore,
       selected_id: action.val.selected_id,
       showEditMenu: action.val.showEditMenu,
+      showDropdownMenu: action.val.showDropdownMenu,
+      showAddItemMenu: action.val.showAddItemMenu,
     };
   }
 

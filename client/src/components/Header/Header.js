@@ -16,23 +16,27 @@ class Header extends Component {
   };
 
   showMenu = () => {
-    let status;
+    let add = false;
+    let edit = false;
+    let dropDown;
     if (this.props.showDropdownMenu) {
-      status = false;
+      dropDown = false;
     } else {
-      status = true;
+      dropDown = true;
     }
-    this.props.showMenuArea(status);
+    this.props.showMenuArea(dropDown, add, edit);
   };
 
   showAdd = () => {
-    let status;
+    let add;
+    let edit = false;
+    let dropDown = false;
     if (this.props.showAddItemMenu) {
-      status = false;
+      add = false;
     } else {
-      status = true;
+      add = true;
     }
-    this.props.showAddItem(status);
+    this.props.showAddItem(add, edit, dropDown);
   };
 
   showEdit = () => {
@@ -101,17 +105,17 @@ const mapStateToProps = state => {
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
   return {
-    showMenuArea: status => {
+    showMenuArea: (showDropdownMenu, showAddItemMenu, showEditMenu) => {
       dispach({
         type: "SHOW_DROPDOWN_MENU",
-        payload: { showDropdownMenu: status }
+        payload: { showDropdownMenu, showAddItemMenu, showEditMenu }
       });
     },
 
-    showAddItem: status => {
+    showAddItem: (showAddItemMenu, showEditMenu, showDropdownMenu) => {
       dispach({
         type: "SHOW_ADD_ITEM",
-        payload: { showAddItemMenu: status }
+        payload: { showAddItemMenu, showEditMenu, showDropdownMenu }
       });
     },
 

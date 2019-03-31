@@ -10,9 +10,10 @@ class InfoBar extends Component {
   };
 
   cancelEdit = () => {
-    // this.setState({
-    //   showEditWindow: false
-    // });
+    let add= false;
+    let edit ;
+    let dropDown = false;
+
     let value;
     if( this.props.editing ) {
       value = false;
@@ -20,14 +21,13 @@ class InfoBar extends Component {
       value = true;
     }
 
-    let newValue;
     if (this.props.showEditMenu) {
-      newValue = false;
+      edit = false;
     } else {
-      newValue = true;
+      edit = true;
     }
     // let data = false;
-    this.props.cancelUpdate(value, newValue);
+    this.props.cancelUpdate(value, edit, add, dropDown);
   };
 
   render() {
@@ -81,10 +81,10 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
   return {
-    cancelUpdate: ( editing, showEditMenu ) => {
+    cancelUpdate: ( editing, showEditMenu, showAddItemMenu, showDropdownMenu ) => {
       dispach({
         type: "CANCEL_UPDATE",
-        payload: { editing, showEditMenu }
+        payload: { editing, showEditMenu, showAddItemMenu, showDropdownMenu }
       });
     }
   };

@@ -5,7 +5,7 @@ import API from "../utils/API";
 // opens closes dropdown menu
 function* dropDownAsync(data) {
   // console.log(data)
-   yield put({ type: "SET_DROPDOWN_MENU", val: data.payload.showDropdownMenu});
+   yield put({ type: "SET_DROPDOWN_MENU", val: data.payload });
 }
 
 export function* watchDropdown() {
@@ -17,7 +17,7 @@ export function* watchDropdown() {
 // opens closes add new item area
 function* addItemAreaAsync(data) {
   // console.log(data)
-   yield put({ type: "SHOW_ADD_ITEM_AREA", val: data.payload.showAddItemMenu});
+   yield put({ type: "SHOW_ADD_ITEM_AREA", val: data.payload });
 }
 
 export function* watchAddItemArea() {

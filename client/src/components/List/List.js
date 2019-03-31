@@ -39,11 +39,14 @@ class List extends Component {
   };
 
   edit = id => {
-    let editWindow;
+    let add = false;
+    let edit;
+    let dropDown = false;
+
     if (this.props.showEditMenu) {
-      editWindow = false;
+      edit = false;
     } else {
-      editWindow = true;
+      edit = true;
     }
 
     for (var i = 0; i < this.props.storeList.length; i++) {
@@ -53,7 +56,9 @@ class List extends Component {
           this.props.storeList[i].qty,
           this.props.storeList[i].store,
           id,
-          editWindow
+          edit,
+          add,
+          dropDown
         );
       }
     }
@@ -239,7 +244,9 @@ const mapDispachToProps = dispach => {
       selectedQty,
       selectedStore,
       selected_id,
-      showEditMenu
+      showEditMenu,
+      showAddItemMenu,
+      showDropdownMenu
     ) => {
       dispach({
         type: "SET_UPDATE_ITEM",
@@ -248,7 +255,9 @@ const mapDispachToProps = dispach => {
           selectedQty,
           selectedStore,
           selected_id,
-          showEditMenu
+          showEditMenu,
+          showAddItemMenu,
+          showDropdownMenu
         }
       });
     },
