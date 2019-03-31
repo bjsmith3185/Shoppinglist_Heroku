@@ -21,38 +21,38 @@ class Edit extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  edit = id => {
-    for (var i = 0; i < this.props.storeList.length; i++) {
-      if (this.props.storeList[i]._id === id) {
-        this.setState({
-          selectedItem: this.props.storeList[i].item,
-          selectedQty: this.props.storeList[i].qty,
-          selectedStore: this.props.storeList[i].store,
-          selected_id: id
-        });
-      }
-    }
+  // edit = id => {
+  //   for (var i = 0; i < this.props.storeList.length; i++) {
+  //     if (this.props.storeList[i]._id === id) {
+  //       this.setState({
+  //         selectedItem: this.props.storeList[i].item,
+  //         selectedQty: this.props.storeList[i].qty,
+  //         selectedStore: this.props.storeList[i].store,
+  //         selected_id: id
+  //       });
+  //     }
+  //   }
 
-    this.setState({
-      showEditWindow: true
-    });
-  };
+  //   this.setState({
+  //     showEditWindow: true
+  //   });
+  // };
 
   submitChanges = () => {
     let item, qty, store;
 
     if (this.state.item === "") {
-      item = this.state.selectedItem;
+      item = this.props.selectedItem;
     } else {
       item = this.state.item;
     }
     if (this.state.qty === "") {
-      qty = this.state.selectedQty;
+      qty = this.props.selectedQty;
     } else {
       qty = this.state.qty;
     }
     if (this.state.store === "") {
-      store = this.state.selectedStore;
+      store = this.props.selectedStore;
     } else {
       store = this.state.store;
     }
@@ -68,7 +68,7 @@ class Edit extends Component {
       myStore: this.props.myStore.toLowerCase()
     };
 
-    this.props.updateList(this.state.selected_id, updated, userInfo);
+    this.props.updateList(this.props.selected_id, updated, userInfo);
     this.cancelEdit();
     this.setState({
       item: "",
@@ -156,7 +156,8 @@ const mapDispachToProps = dispach => {
     updateList: (id, data, userInfo) => {
       dispach({
         type: "UPDATE_LIST",
-        val: { id, payload: { data, userInfo } }
+        // val: { id, payload: { data, userInfo } }
+       payload: { id, data, userInfo } 
       });
     },
 

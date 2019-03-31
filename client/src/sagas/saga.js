@@ -217,7 +217,8 @@ export function* watchSetHistory() {
 
 //  update/edit list
 function* updateListAsync(data) {
-  const updated = yield API.updateShoppingList(data.val.id, data.val.payload)
+  console.log(data)
+  const updated = yield API.updateShoppingList(data.payload.id, data.payload)
  yield put({ type: "SET_STORELIST_COUNT_STORE", val: updated.data } );
 }
 

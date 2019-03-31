@@ -55,7 +55,7 @@ class List extends Component {
           this.props.storeList[i].item,
           this.props.storeList[i].qty,
           this.props.storeList[i].store,
-          id,
+          this.props.storeList[i]._id,
           edit,
           add,
           dropDown
