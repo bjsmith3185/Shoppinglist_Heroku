@@ -1,33 +1,5 @@
 
 
-
-.list-area {
-  background: rgb(233, 233, 32);
-  /* margin-top: 185px; */
-  max-height: 600px;
-  overflow: auto;
-}
-
-.list-area-open {
-  /* margin-top: 440px; */
-  background:rgb(233, 233, 32);
-
-  max-height: 400px;
-  overflow: auto;
-}
-
-
-.list-area2 {
-  background: rgb(233, 233, 32);
-  margin-top: 185px;
-}
-
-.list-area-open2 {
-  margin-top: 440px;
-  background: orange;
-
-}
-
 /* need to make this a fixed area  */
 .list-info-area {
   width: 100%;

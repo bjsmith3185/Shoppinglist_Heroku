@@ -1,5 +1,15 @@
 
 const initState = {
+    showDropdownMenu: false,
+    showAddItemMenu: false,
+    showEditMenu: false,
+
+    selectedItem: '',
+    selectedQty: '',
+    selectedStore: '',
+    selected_id: '',
+
+    
     name: '',
     allList: [],
     countRemaining: '',

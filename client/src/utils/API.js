@@ -41,13 +41,6 @@ export default {
     return axios.put("./api/system/updatelist/"+ id, data);
   },
 
-  // =============== shopping
-
-
-  getListItems: function() {
-    return axios.get("./api/shopping");
-  },
-
 
   //==================== User
 
@@ -55,9 +48,5 @@ export default {
     return axios.put("/api/users/signout/" + id);
   }
 
-  // updateUserData: function (data) {
-  //   console.log("user update api")
-  //   console.log(data)
-  //   return axios.put('/api/users', data)
-  // },
+
 };

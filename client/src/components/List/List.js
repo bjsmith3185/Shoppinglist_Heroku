@@ -29,16 +29,37 @@ class List extends Component {
     this.props.removeItem(deleteData);
   };
 
-  strike = (id, strikeThru) => {
-    if (strikeThru) {
-      strikeThru = false;
-    } else {
-      strikeThru = true;
-    }
-    this.props.checkOff(id, strikeThru);
-  };
+  // strike = (id, strikeThru) => {
+  //   if (strikeThru) {
+  //     strikeThru = false;
+  //   } else {
+  //     strikeThru = true;
+  //   }
+  //   this.props.checkOff(id, strikeThru);
+  // };
 
   edit = id => {
+    let editWindow;
+    if (this.props.showEditMenu) {
+      editWindow = false;
+    } else {
+      editWindow = true;
+    }
+
+    for (var i = 0; i < this.props.storeList.length; i++) {
+      if (this.props.storeList[i]._id === id) {
+        this.props.setItemToEdit(
+          this.props.storeList[i].item,
+          this.props.storeList[i].qty,
+          this.props.storeList[i].store,
+          id,
+          editWindow
+        );
+      }
+    }
+  };
+
+  editA = id => {
     for (var i = 0; i < this.props.storeList.length; i++) {
       if (this.props.storeList[i]._id === id) {
         this.setState({
@@ -77,12 +98,12 @@ class List extends Component {
     let updated = {
       item: item.toLowerCase(),
       qty: qty.toLowerCase(),
-      store: store.toLowerCase(),
+      store: store.toLowerCase()
     };
 
     let userInfo = {
       userId: this.props.userId,
-      myStore: this.props.myStore.toLowerCase(),
+      myStore: this.props.myStore.toLowerCase()
     };
 
     this.props.updateList(this.state.selected_id, updated, userInfo);
@@ -95,78 +116,75 @@ class List extends Component {
     });
   };
 
-  cancelEdit = () => {
-    this.setState({
-      showEditWindow: false
-    });
-    let data = false;
-    this.props.cancelUpdate(data);
-  };
+  // cancelEdit = () => {
+  //   this.setState({
+  //     showEditWindow: false
+  //   });
+  //   let data = false;
+  //   this.props.cancelUpdate(data);
+  // };
 
   render() {
+    // console.log("list render")
+    // console.log(this.props);
+
+    const listArea =
+      this.props.showEditMenu ||
+      this.props.showDropdownMenu ||
+      this.props.showAddItemMenu
+        ? "list-area-open"
+        : "list-area";
+
+    // const listArea = this.props.editing ? "list-area-open" : "list-area";
+
     return (
-      <div className="list">
-        <div className="list-store-area">
-          <div className="list-store-title text-center">
-            {this.props.myStore
-              .toLowerCase()
-              .split(" ")
-              .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-              .join(" ")}
+      <div className={listArea}>
+        {/* list area displayed either in edit mode or regular */}
+
+        {this.props.editing ? (
+          <div>
+            {/* beginning of actual list items with edit button  */}
+            {this.props.storeList && (
+              <div className="item-list-container">
+                {this.props.storeList.map((item, i) => (
+                  <div className="item" key={i}>
+                    <div
+                      className="item-container text-left"
+                      onClick={() => this.strike(item._id, item.strikeThru)}
+                    >
+                      <span className="item-name">{item.item}</span>
+                      <span className="item-qty">&#40; {item.qty} &#41;</span>
+                    </div>
+
+                    <div className="item-btn-container text-right">
+                      <div
+                        className="item-edit-btn text-cener"
+                        onClick={() => this.edit(item._id)}
+                      >
+                        Edit
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-
-          {this.props.editing ? (
-            <div>
-              <div className="update-edit-area text-left">
-                <div className="cancel-edit-btn" onClick={this.cancelEdit}>
-                  Cancel Edit
-                </div>
-              </div>
-
-              <div className="list-qty-remaining text-right">
-                Items Remaining {this.props.countRemaining}
-              </div>
-
-              {this.state.showEditWindow && (
-                <div className="list-edit-window text-center">
-                  <div className="input-title">Item</div>
-                  <input
-                    className="list-edit edit-item-input"
-                    value={this.state.item}
-                    name="item"
-                    placeholder={this.state.selectedItem}
-                    onChange={this.onChange}
-                  />
-                  <div className="input-title">Qty</div>
-                  <input
-                    className="list-edit edit-qty-input"
-                    value={this.state.qty}
-                    name="qty"
-                    placeholder={this.state.selectedQty}
-                    onChange={this.onChange}
-                  />
-                  <div className="input-title">Store</div>
-                  <input
-                    className="list-edit edit-store-input"
-                    value={this.state.store}
-                    name="store"
-                    placeholder={this.state.selectedStore}
-                    onChange={this.onChange}
-                  />
-                  <br />
-                  <button
-                    className="edit-submit-btn"
-                    onClick={this.submitChanges}
-                  >
-                    Submit
-                  </button>
-                </div>
-              )}
-
-              {this.props.storeList && (
-                <div className="item-list-container">
-                  {this.props.storeList.map((item, i) => (
-                    <div className="item" key={i}>
+        ) : (
+          <div>
+            {/* beginning of actual list items with delete button  */}
+            {this.props.storeList && (
+              <div className="item-list-container">
+                {this.props.storeList.map((item, i) => (
+                  <div className="item" key={i}>
+                    {item.strikeThru ? (
+                      <div
+                        className="item-container text-left strike"
+                        onClick={() => this.strike(item._id, item.strikeThru)}
+                      >
+                        <span className="item-name">{item.item}</span>
+                        <span className="item-qty">{item.qty}</span>
+                      </div>
+                    ) : (
                       <div
                         className="item-container text-left"
                         onClick={() => this.strike(item._id, item.strikeThru)}
@@ -174,64 +192,22 @@ class List extends Component {
                         <span className="item-name">{item.item}</span>
                         <span className="item-qty">&#40; {item.qty} &#41;</span>
                       </div>
+                    )}
 
-                      <div className="item-btn-container text-right">
-                        <div
-                          className="item-edit-btn text-cener"
-                          onClick={() => this.edit(item._id)}
-                        >
-                          Edit
-                        </div>
+                    <div className="item-btn-container text-right">
+                      <div
+                        className="item-delete-btn"
+                        onClick={() => this.delete(item._id)}
+                      >
+                        X
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
-            <div>
-              <div className="list-qty-remaining-solo text-right">
-                Items Remaining {this.props.countRemaining}
+                  </div>
+                ))}
               </div>
-              {this.props.storeList && (
-                <div className="item-list-container">
-                  {this.props.storeList.map((item, i) => (
-                    <div className="item" key={i}>
-                      {item.strikeThru ? (
-                        <div
-                          className="item-container text-left strike"
-                          onClick={() => this.strike(item._id, item.strikeThru)}
-                        >
-                          <span className="item-name">{item.item}</span>
-                          <span className="item-qty">{item.qty}</span>
-                        </div>
-                      ) : (
-                        <div
-                          className="item-container text-left"
-                          onClick={() => this.strike(item._id, item.strikeThru)}
-                        >
-                          <span className="item-name">{item.item}</span>
-                          <span className="item-qty">
-                            &#40; {item.qty} &#41;
-                          </span>
-                        </div>
-                      )}
-
-                      <div className="item-btn-container text-right">
-                        <div
-                          className="item-delete-btn"
-                          onClick={() => this.delete(item._id)}
-                        >
-                          X
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -239,6 +215,8 @@ class List extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
+  // console.log("list state");
+  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -247,12 +225,34 @@ const mapStateToProps = state => {
     storeNames: state.storeNames,
     myStore: state.myStore,
     editing: state.editing,
-    userId: state.userId
+    userId: state.userId,
+    showEditMenu: state.showEditMenu,
+    showDropdownMenu: state.showDropdownMenu,
+    showAddItemMenu: state.showAddItemMenu
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
+    setItemToEdit: (
+      selectedItem,
+      selectedQty,
+      selectedStore,
+      selected_id,
+      showEditMenu
+    ) => {
+      dispach({
+        type: "SET_UPDATE_ITEM",
+        payload: {
+          selectedItem,
+          selectedQty,
+          selectedStore,
+          selected_id,
+          showEditMenu
+        }
+      });
+    },
+
     checkOff: (id, strikeThru) => {
       dispach({ type: "STRIKE_THRU", val: { id: id, strikeThru: strikeThru } });
     },

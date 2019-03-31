@@ -1,11 +1,16 @@
 
-.home-no-list {
+.home-area {
+    width: 100%;
+}
+
+
+/* .home-no-list {
     font-size: 20px;
     font-weight: bold;
     color: black;
     font-family: 'Kalam', cursive;
     margin-top: 10px;
-}
+} */
 
 
 

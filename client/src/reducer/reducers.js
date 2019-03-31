@@ -3,11 +3,83 @@ import initialState from "../store/state";
 const setData = (state = initialState, action) => {
   const newState = { ...state };
 
+  // open/close dropdown menu
+  if (action.type === "SET_DROPDOWN_MENU") {
+    // console.log(action);
+    return {
+      ...state,
+      showDropdownMenu: action.val
+    };
+  }
+
+  // open/close add item area
+  if (action.type === "SHOW_ADD_ITEM_AREA") {
+    return {
+      ...state,
+      showAddItemMenu: action.val
+    };
+  }
+
+  // open/close edit item area
+  if (action.type === "SHOW_EDIT_AREA") {
+    return {
+      ...state,
+      // showEditMenu: action.val.showEditMenu,
+      editing: action.val.editing,
+    };
+  }
+
+  // initiate edit mode
+  if (action.type === "EDIT_ASYNC") {
+    return {
+      ...state,
+      editing: action.val.editing,
+      showDropdownMenu: action.val.showDropdownMenu,
+      showEditMenu: action.val.showEditMenu,
+    };
+  }
+
+   // set info for item to update
+   if (action.type === "SET_UPDATE_ITEM_ASYNC") {
+    return {
+      ...state,
+      selectedItem: action.val.selectedItem,
+      selectedQty: action.val.selectedQty,
+      selectedStore: action.val.selectedStore,
+      selected_id: action.val.selected_id,
+      showEditMenu: action.val.showEditMenu,
+    };
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // reducer for all data
   if (action.type === "SET_ALL_DATA") {
     // console.log("reducer, getting list");
     // console.log(action.val);
-    
+
     return {
       ...state,
       myStore: action.val.myStore,
@@ -19,7 +91,7 @@ const setData = (state = initialState, action) => {
       userId: action.val.userId,
       history: action.val.history,
       signedIn: action.val.signedIn,
-      editing: false,
+      editing: false
     };
   }
 
@@ -27,7 +99,7 @@ const setData = (state = initialState, action) => {
   if (action.type === "SET_STORELIST_COUNT") {
     // console.log("reducer, UPDATE list");
     // console.log(action.val);
-     return {
+    return {
       ...state,
       storeList: action.val.storeList,
       countRemaining: action.val.countRemaining
@@ -39,7 +111,6 @@ const setData = (state = initialState, action) => {
     // console.log("reducer, all data");
     // console.log(action.val);
 
-
     return {
       ...state,
       // list: listArray,
@@ -48,19 +119,22 @@ const setData = (state = initialState, action) => {
       myStore: action.val.myStore,
       storeList: action.val.storeList,
       storeNames: action.val.storeNames,
+      showAddItemMenu: action.val.showAddItemMenu,
+      showStoresList: action.val.showStoresList,
+
     };
   }
 
-   // reducer for setting user info or errors
-   if (action.type === "SET_USER") {
+  // reducer for setting user info or errors
+  if (action.type === "SET_USER") {
     // console.log("reducer, set user");
     // console.log(action.val);
     let myStore = action.val.myStore;
-    if(action.val.myStore === undefined) {
+    if (action.val.myStore === undefined) {
       // console.log("no my store")
-      myStore = '';
+      myStore = "";
     }
-    
+
     return {
       ...state,
       name: action.val.name,
@@ -74,64 +148,51 @@ const setData = (state = initialState, action) => {
   if (action.type === "SET_USERID") {
     // console.log("reducer, set userID");
     // console.log(action.val);
-       
+
     return {
       ...state,
-      userId: action.val,
+      userId: action.val
     };
   }
 
   // reducer for signing out user
   if (action.type === "SIGN_OUT_ASYNC") {
-    console.log("reducer, set signout");
- 
-          
+    // console.log("reducer, set signout");
+
     return {
       ...state,
-      name: '',
-      myStore: '',
-      userId: '',
-      password: '',
-      countRemaining: '',
+      name: "",
+      myStore: "",
+      userId: "",
+      password: "",
+      countRemaining: "",
       allList: [],
       storeList: [],
       storeNames: [],
       history: {},
       signedIn: false,
-      editing: false,
+      editing: false
     };
   }
 
-    //reducer for setting history to state
+  //reducer for setting history to state
   if (action.type === "SET_HISTORY_ASYNC") {
     // console.log("reducer, set history");
     // console.log(action.val)
     return {
       ...state,
-      name: '',
-      myStore: '',
-      userId: '',
-      password: '',
-      countRemaining: '',
-      allList: '',
-      storeList: '',
-      storeNames: '',
+      name: "",
+      myStore: "",
+      userId: "",
+      password: "",
+      countRemaining: "",
+      allList: "",
+      storeList: "",
+      storeNames: "",
       history: action.val,
-      editing: false,
+      editing: false
     };
   }
-
-  // initiate edit mode
-  if (action.type === "EDIT_ASYNC") {
-    console.log("reducer, EDIT");
-    console.log(action.val)
-    return {
-      ...state,
-      editing: action.val.editing
-    };
-  }
-
-
 
   return newState;
 };

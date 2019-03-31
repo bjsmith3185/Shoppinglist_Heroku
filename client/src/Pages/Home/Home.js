@@ -4,10 +4,9 @@ import "./Home.css";
 import { connect } from "react-redux";
 import List from "../../components/List";
 import Header from "../../components/Header";
+import InfoBar from "../../components/InfoBar";
 
 class HomePage extends Component {
-
-  
   componentWillMount() {
     const { history } = this.props;
     const user_id = localStorage.getItem("userId");
@@ -16,14 +15,14 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="App ">
-        <Header />
+      <div className="home-area">
+  
+          <Header />
 
-        {!this.props.myStore ? (
-          <div className="text-center home-no-list">No items on your list</div>
-        ) : (
+          <InfoBar />
+     
           <List />
-        )}
+
       </div>
     );
   }
@@ -31,12 +30,11 @@ class HomePage extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-
   return {
     userId: state.userId,
     allList: state.allList,
     myStore: state.myStore,
-    editing: state.editing,
+    editing: state.editing
   };
 };
 

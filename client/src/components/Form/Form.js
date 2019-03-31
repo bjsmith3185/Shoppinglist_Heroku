@@ -1,55 +1,131 @@
-import React from "react";
+import React, { Component } from "react";
+// Redux
+import { connect } from "react-redux";
 import "./Form.css";
 
-const Form = props => (
-  <div className="form-area">
-    <div className="form-title text-center">Add Item to List</div>
+class Form extends Component {
+  state = {
+    item: '',
+    qty: '',
+    store: '',
+  };
 
-    <div className="line-item">
-      <label className="line-title">Item</label>
-      <input
-        className="line-input"
-        value={props.item}
-        name="item"
-        onChange={props.onChange}
-        type="text"
-        placeholder="Enter Item"
-      />
-    </div>
+  componentDidMount() {
+    // console.log(this.props);
+  }
 
-    <div className="line-item">
-      <label className="line-title">Qty</label>
-      <input
-        className="line-input"
-        value={props.qty}
-        name="qty"
-        onChange={props.onChange}
-        type="text"
-        placeholder="Qty"
-      />
-    </div>
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-    <div className="line-item">
-      <label className="line-title">Store</label>
-      <input
-        className="line-input"
-        value={props.store}
-        name="store"
-        onChange={props.onChange}
-        type="text"
-        placeholder="Store"
-      />
-    </div>
+  add = event => {
+    event.preventDefault();
+    let data = {
+      item: this.state.item.toLowerCase(),
+      store: this.state.store.toLowerCase(),
+      qty: this.state.qty
+    };
+    let user = this.props.userId;
 
-    <div className="form-btn-area text-center">
-      <button
-        className="text-center form-btn btn btn-info"
-        onClick={props.addToList}
-      >
-        Add
-      </button>
-    </div>
-  </div>
-);
+    let menu = { showAddItemMenu: false }
 
-export default Form;
+    this.props.addItem(user, data, menu);
+    this.setState({
+      item: "",
+      store: "",
+      qty: "",
+     });
+  };
+
+  render() {
+    return (
+      <div className="form-area">
+        <div className="form-title text-center">Add Item to List</div>
+
+        <div className="line-item">
+          <label className="line-title">Item</label>
+          <input
+            className="line-input"
+            value={this.item}
+            name="item"
+            onChange={this.onChange}
+            type="text"
+            placeholder="Enter Item"
+          />
+        </div>
+
+        <div className="line-item">
+          <label className="line-title">Qty</label>
+          <input
+            className="line-input"
+            value={this.qty}
+            name="qty"
+            onChange={this.onChange}
+            type="text"
+            placeholder="Qty"
+          />
+        </div>
+
+        <div className="line-item">
+          <label className="line-title">Store</label>
+          <input
+            className="line-input"
+            value={this.store}
+            name="store"
+            onChange={this.onChange}
+            type="text"
+            placeholder="Store"
+          />
+        </div>
+
+        <div className="form-btn-area text-center">
+          <button
+            className="text-center form-btn btn btn-info"
+            onClick={this.add}
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
+// this brings in the state to display on this component
+const mapStateToProps = state => {
+  // console.log("state in Menu");
+  // console.log(state);
+  return {
+    showDropdownMenu: state.showDropdownMenu,
+    showAddItemMenu: state.showAddItemMenu,
+    showEditMenu: state.showEditMenu,
+    name: state.name,
+    countRemaining: state.countRemaining,
+    allList: state.allList,
+    storeList: state.storeList,
+    storeNames: state.storeNames,
+    myStore: state.myStore,
+    userId: state.userId,
+    history: state.history,
+    editing: state.editing
+  };
+};
+
+// functions to dispatch actions
+const mapDispachToProps = dispach => {
+  return {
+
+    addItem: (user, data, menu ) => {
+      dispach({
+        type: "ADD_ITEM",
+        payload: { user, data, menu }
+      });
+    },
+    
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(Form);
