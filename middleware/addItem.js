@@ -9,8 +9,6 @@ module.exports = {
   newItem: function(userId, data) {
     return new Promise((resolve, reject) => {
       // update the shopping collection with new item
-      // make sure the store name is lowercase
-      console.log(data)
       shopping
         .create(data)
         .then(dbresult => {

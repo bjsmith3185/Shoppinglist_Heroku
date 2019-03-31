@@ -3,66 +3,37 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./Menu.css";
 
-
 class Menu extends Component {
-
   state = {
-    showStoresList: false,
-  }
+    showStoresList: false
+  };
 
-  componentDidMount() {
-    // console.log(this.props);
-  }
+  componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   showStoresArea = () => {
-    if ( this.state.showStoresList ) {
+    if (this.state.showStoresList) {
       this.setState({
-        showStoresList: false,
-      })
+        showStoresList: false
+      });
     } else {
       this.setState({
-        showStoresList: true,
-      })
+        showStoresList: true
+      });
     }
   };
 
-  selectStore = (store) => {
-    const myStore = {
-      userId: this.props.userId,
-      myStore: store,
-      showDropdownMenu: false,
-    };
-    // this.props.setStore(myStore);
+  selectStore = store => {
     this.props.setStore(store, this.props.userId, false);
     this.setState({
-      showStoresList: false,
+      showStoresList: false
     });
   };
 
-  // editList = () => {
-  //   let value;
-  //   if (this.props.edit) {
-  //     value = false;
-  //   } else {
-  //     value = true;
-  //   }
-      
-  //   this.props.edit(value);
-  // };
-
   showEdit = () => {
-    // let status;
-    // if (this.props.showEditMenu) {
-    //   status = false;
-    // } else {
-    //   status = true;
-    // }
-
-    // temp for dev only
     let showStatus;
     if (this.props.editing) {
       showStatus = false;
@@ -72,7 +43,6 @@ class Menu extends Component {
     this.props.showEditArea(showStatus);
   };
 
-
   signOutUser = () => {
     this.props.signOut(this.props.userId, this.props.history);
   };
@@ -80,15 +50,11 @@ class Menu extends Component {
   closeDropDown = () => {
     this.props.closeDropDownMenu();
   };
- 
 
   render() {
     return (
       <div className="menu-area">
-        <div
-          onClick={this.showStoresArea}
-          className="menu-link stores-link"
-        >
+        <div onClick={this.showStoresArea} className="menu-link stores-link">
           - Stores
         </div>
         {this.state.showStoresList && (
@@ -130,8 +96,6 @@ class Menu extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state in Menu");
-  // console.log(state);
   return {
     showDropdownMenu: state.showDropdownMenu,
     showAddItemMenu: state.showAddItemMenu,
@@ -151,7 +115,6 @@ const mapStateToProps = state => {
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
   return {
- 
     setStore: (myStore, userId, showDropdownMenu) => {
       dispach({
         type: "SET_STORE",
@@ -170,23 +133,15 @@ const mapDispachToProps = dispach => {
       dispach({
         type: "SHOW_DROPDOWN_MENU",
         payload: { showDropdownMenu: false }
-      })
+      });
     },
 
-    // edit: (value) => {
-    //   dispach({
-    //     type: "EDIT",
-    //     payload: { editing: value, showDropdownMenu: false }
-    //   });
-    // },
-
-    showEditArea: (showStatus) => {
+    showEditArea: showStatus => {
       dispach({
         type: "EDIT",
         payload: { editing: showStatus }
       });
     }
-    
   };
 };
 

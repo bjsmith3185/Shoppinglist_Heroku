@@ -5,14 +5,12 @@ import "./Form.css";
 
 class Form extends Component {
   state = {
-    item: '',
-    qty: '',
-    store: '',
+    item: "",
+    qty: "",
+    store: ""
   };
 
-  componentDidMount() {
-    // console.log(this.props);
-  }
+  componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -27,14 +25,14 @@ class Form extends Component {
     };
     let user = this.props.userId;
 
-    let menu = { showAddItemMenu: false }
+    let menu = { showAddItemMenu: false };
 
     this.props.addItem(user, data, menu);
     this.setState({
       item: "",
       store: "",
-      qty: "",
-     });
+      qty: ""
+    });
   };
 
   render() {
@@ -93,8 +91,6 @@ class Form extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state in Menu");
-  // console.log(state);
   return {
     showDropdownMenu: state.showDropdownMenu,
     showAddItemMenu: state.showAddItemMenu,
@@ -114,14 +110,12 @@ const mapStateToProps = state => {
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
   return {
-
-    addItem: (user, data, menu ) => {
+    addItem: (user, data, menu) => {
       dispach({
         type: "ADD_ITEM",
         payload: { user, data, menu }
       });
-    },
-    
+    }
   };
 };
 

@@ -5,7 +5,7 @@ const setData = (state = initialState, action) => {
 
   // open/close dropdown menu
   if (action.type === "SET_DROPDOWN_MENU") {
-    console.log(action.val);
+
     return {
       ...state,
       showDropdownMenu: action.val.showDropdownMenu,
@@ -28,7 +28,6 @@ const setData = (state = initialState, action) => {
   if (action.type === "SHOW_EDIT_AREA") {
     return {
       ...state,
-      // showEditMenu: action.val.showEditMenu,
       editing: action.val.editing,
     };
   }
@@ -59,34 +58,8 @@ const setData = (state = initialState, action) => {
     };
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // reducer for all data
   if (action.type === "SET_ALL_DATA") {
-    // console.log("reducer, getting list");
-    // console.log(action.val);
 
     return {
       ...state,
@@ -105,8 +78,7 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count
   if (action.type === "SET_STORELIST_COUNT") {
-    // console.log("reducer, UPDATE list");
-    // console.log(action.val);
+
     return {
       ...state,
       storeList: action.val.storeList,
@@ -116,30 +88,22 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count, store
   if (action.type === "SET_STORELIST_COUNT_STORE") {
-    // console.log("reducer, all data");
-    // console.log(action.val);
 
     return {
       ...state,
-      // list: listArray,
       countRemaining: action.val.countRemaining,
-      // name: action.val.name,
       myStore: action.val.myStore,
       storeList: action.val.storeList,
       storeNames: action.val.storeNames,
       showAddItemMenu: action.val.showAddItemMenu,
       showStoresList: action.val.showStoresList,
-
     };
   }
 
   // reducer for setting user info or errors
   if (action.type === "SET_USER") {
-    // console.log("reducer, set user");
-    // console.log(action.val);
     let myStore = action.val.myStore;
     if (action.val.myStore === undefined) {
-      // console.log("no my store")
       myStore = "";
     }
 
@@ -154,8 +118,6 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting user id on signin
   if (action.type === "SET_USERID") {
-    // console.log("reducer, set userID");
-    // console.log(action.val);
 
     return {
       ...state,
@@ -165,7 +127,6 @@ const setData = (state = initialState, action) => {
 
   // reducer for signing out user
   if (action.type === "SIGN_OUT_ASYNC") {
-    // console.log("reducer, set signout");
 
     return {
       ...state,
@@ -185,8 +146,7 @@ const setData = (state = initialState, action) => {
 
   //reducer for setting history to state
   if (action.type === "SET_HISTORY_ASYNC") {
-    // console.log("reducer, set history");
-    // console.log(action.val)
+
     return {
       ...state,
       name: "",

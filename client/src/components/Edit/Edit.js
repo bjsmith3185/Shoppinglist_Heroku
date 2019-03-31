@@ -21,23 +21,6 @@ class Edit extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // edit = id => {
-  //   for (var i = 0; i < this.props.storeList.length; i++) {
-  //     if (this.props.storeList[i]._id === id) {
-  //       this.setState({
-  //         selectedItem: this.props.storeList[i].item,
-  //         selectedQty: this.props.storeList[i].qty,
-  //         selectedStore: this.props.storeList[i].store,
-  //         selected_id: id
-  //       });
-  //     }
-  //   }
-
-  //   this.setState({
-  //     showEditWindow: true
-  //   });
-  // };
-
   submitChanges = () => {
     let item, qty, store;
 
@@ -87,39 +70,37 @@ class Edit extends Component {
   };
 
   render() {
-    // console.log(this.props)
-
     return (
       <div className="list-edit-window text-center">
-      <div className="input-title">Item</div>
-      <input
-        className="list-edit edit-item-input"
-        value={this.state.item}
-        name="item"
-        placeholder={this.props.selectedItem}
-        onChange={this.onChange}
-      />
-      <div className="input-title">Qty</div>
-      <input
-        className="list-edit edit-qty-input"
-        value={this.state.qty}
-        name="qty"
-        placeholder={this.props.selectedQty}
-        onChange={this.onChange}
-      />
-      <div className="input-title">Store</div>
-      <input
-        className="list-edit edit-store-input"
-        value={this.state.store}
-        name="store"
-        placeholder={this.props.selectedStore}
-        onChange={this.onChange}
-      />
-      <br />
-      <button className="edit-submit-btn" onClick={this.submitChanges}>
-        Submit
-      </button>
-    </div>
+        <div className="input-title">Item</div>
+        <input
+          className="list-edit edit-item-input"
+          value={this.state.item}
+          name="item"
+          placeholder={this.props.selectedItem}
+          onChange={this.onChange}
+        />
+        <div className="input-title">Qty</div>
+        <input
+          className="list-edit edit-qty-input"
+          value={this.state.qty}
+          name="qty"
+          placeholder={this.props.selectedQty}
+          onChange={this.onChange}
+        />
+        <div className="input-title">Store</div>
+        <input
+          className="list-edit edit-store-input"
+          value={this.state.store}
+          name="store"
+          placeholder={this.props.selectedStore}
+          onChange={this.onChange}
+        />
+        <br />
+        <button className="edit-submit-btn" onClick={this.submitChanges}>
+          Submit
+        </button>
+      </div>
     );
   }
 }
@@ -139,7 +120,7 @@ const mapStateToProps = state => {
     selectedItem: state.selectedItem,
     selectedQty: state.selectedQty,
     selectedStore: state.selectedStore,
-    selected_id: state.selected_id,
+    selected_id: state.selected_id
   };
 };
 
@@ -156,8 +137,7 @@ const mapDispachToProps = dispach => {
     updateList: (id, data, userInfo) => {
       dispach({
         type: "UPDATE_LIST",
-        // val: { id, payload: { data, userInfo } }
-       payload: { id, data, userInfo } 
+        payload: { id, data, userInfo }
       });
     },
 

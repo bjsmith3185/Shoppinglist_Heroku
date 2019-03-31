@@ -5,7 +5,7 @@ const storeNames = require("./storeNames");
 
 module.exports = {
   edit: function(id, data) {
-    console.log(data)
+
     return new Promise((resolve, reject) => {
       // update the shopping collection
       let user_id = data.userInfo.userId;

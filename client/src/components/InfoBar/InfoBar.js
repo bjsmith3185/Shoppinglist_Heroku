@@ -10,12 +10,12 @@ class InfoBar extends Component {
   };
 
   cancelEdit = () => {
-    let add= false;
-    let edit ;
+    let add = false;
+    let edit;
     let dropDown = false;
 
     let value;
-    if( this.props.editing ) {
+    if (this.props.editing) {
       value = false;
     } else {
       value = true;
@@ -26,16 +26,19 @@ class InfoBar extends Component {
     } else {
       edit = true;
     }
-    // let data = false;
+
     this.props.cancelUpdate(value, edit, add, dropDown);
   };
 
   render() {
+    const newStyle =
+      this.props.showEditMenu ||
+      this.props.showDropdownMenu ||
+      this.props.showAddItemMenu
+        ? "infobar-area-edit text-center"
+        : "infobar-area text-center";
 
-    const newStyle = this.props.showEditMenu ||  this.props.showDropdownMenu || this.props.showAddItemMenu ? "infobar-area-edit text-center" : "infobar-area text-center"
-   
-       return (
-
+    return (
       <div className={newStyle}>
         <div className="info-store-title text-center">
           {this.props.myStore
@@ -75,13 +78,18 @@ const mapStateToProps = state => {
     showEditMenu: state.showEditMenu,
     showDropdownMenu: state.showDropdownMenu,
     showAddItemMenu: state.showAddItemMenu,
-    countRemaining: state.countRemaining,
-   };
+    countRemaining: state.countRemaining
+  };
 };
 
 const mapDispachToProps = dispach => {
   return {
-    cancelUpdate: ( editing, showEditMenu, showAddItemMenu, showDropdownMenu ) => {
+    cancelUpdate: (
+      editing,
+      showEditMenu,
+      showAddItemMenu,
+      showDropdownMenu
+    ) => {
       dispach({
         type: "CANCEL_UPDATE",
         payload: { editing, showEditMenu, showAddItemMenu, showDropdownMenu }

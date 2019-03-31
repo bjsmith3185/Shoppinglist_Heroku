@@ -7,9 +7,7 @@ import "./Header.css";
 import Edit from "../Edit";
 
 class Header extends Component {
-  componentDidMount() {
-    // console.log(this.props);
-  }
+  componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -40,7 +38,7 @@ class Header extends Component {
   };
 
   showEdit = () => {
-      let showStatus;
+    let showStatus;
     if (this.props.editing) {
       showStatus = false;
     } else {
@@ -82,7 +80,6 @@ class Header extends Component {
 
         {this.props.showAddItemMenu && <Form />}
 
-        {/* {this.props.editing && <Edit />} */}
         {this.props.showEditMenu && <Edit />}
       </div>
     );
@@ -91,14 +88,12 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state in Header");
-  // console.log(state);
   return {
     showDropdownMenu: state.showDropdownMenu,
     showAddItemMenu: state.showAddItemMenu,
     showEditMenu: state.showEditMenu,
     name: state.name,
-    editing: state.editing,
+    editing: state.editing
   };
 };
 
@@ -119,7 +114,7 @@ const mapDispachToProps = dispach => {
       });
     },
 
-    showEditItem: (status) => {
+    showEditItem: status => {
       dispach({
         type: "SHOW_EDIT",
         payload: { showEditMenu: status }

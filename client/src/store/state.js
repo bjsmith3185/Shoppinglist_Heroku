@@ -9,7 +9,6 @@ const initState = {
     selectedStore: '',
     selected_id: '',
 
-    
     name: '',
     allList: [],
     countRemaining: '',
