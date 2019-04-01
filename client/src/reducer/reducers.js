@@ -39,7 +39,6 @@ const setData = (state = initialState, action) => {
       editing: action.val.editing,
       showDropdownMenu: action.val.showDropdownMenu,
       showEditMenu: action.val.showEditMenu,
-      showDropdownMenu: action.val.showDropdownMenu,
       showAddItemMenu: action.val.showAddItemMenu,
     };
   }

@@ -39,10 +39,29 @@
 }
 
 
+.form-error {
+  margin-left: 130px;
+  color: red;
+  font-family: 'Kalam', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  height: 15px;
+}
+
+.error-block {
+  height: 15px;
+}
 
 
 
-
+.line-input-red {
+  width: 70%;
+  padding-left: 8px;
+  background: rgb(245, 245, 85);
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid red;
+}
 
 
 
